@@ -1,0 +1,19 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "airbnb/base",
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "comma-dangle": 0,
+    "no-unused-expressions": [2, {
+      "allowTernary": true
+    }],
+    "max-len": 0,
+    "strict": [2, "global"],
+    "mocha/no-exclusive-tests": 2
+  }
+}
