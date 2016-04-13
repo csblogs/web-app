@@ -1,0 +1,60 @@
+{
+  "name": "csblogs-web-app",
+  "version": "0.0.1",
+  "description": "An web interface to use the CS Blogs data",
+  "main": "app/server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "npm run build-and-run | bunyan",
+    "start-production": "node ./app/server.js",
+    "create-env": "cp .env.sample .env",
+    "build-and-run": "npm run build && node -r ./app/set-env.js ./app/server.js",
+    "build": "npm run build:js",
+    "build:js": "rm -rf app/ && babel src/ -d app/",
+    "lint": "eslint .",
+    "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
+    "deploy": "npm run create-deployment-package",
+    "create-deployment-package": "npm run build && zip -r eb-deployment-package.zip . --exclude node_modules/\\* .git/\\* src/\\* test/\\* coverage/\\* .env"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csblogs/api.csblogs.com.git"
+  },
+  "keywords": [
+    "blogs",
+    "html5",
+    "responsive",
+    "web app"
+  ],
+  "author": "Daniel Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csblogs/web-app/issues"
+  },
+  "homepage": "https://github.com/csblogs/web-app#readme",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "eslint": "^2.5.1",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-mocha": "^2.0.0",
+    "istanbul": "^1.0.0-alpha.2",
+    "mocha": "^2.4.5",
+    "pre-commit": "^1.1.2"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "helmet": "^1.3.0"
+  }
+}
