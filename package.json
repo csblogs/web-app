@@ -11,8 +11,9 @@
     "start-production": "node ./app/server.js",
     "create-env": "cp .env.sample .env",
     "build-and-run": "npm run build && node -r ./app/set-env.js ./app/server.js",
-    "build": "npm run build:js",
+    "build": "npm run build:js && npm run build:scss",
     "build:js": "rm -rf app/ && babel src/ -d app/",
+    "build:scss": "node-sass src/scss --output app/public/styles",
     "lint": "eslint .",
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
     "deploy": "npm run create-deployment-package",
@@ -49,6 +50,7 @@
     "eslint-plugin-mocha": "^2.0.0",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
+    "node-sass": "^3.4.2",
     "pre-commit": "^1.1.2"
   },
   "dependencies": {
