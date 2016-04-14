@@ -14,7 +14,9 @@
     "build": "npm run build:js && npm run build:scss",
     "build:js": "rm -rf app/ && babel src/ -d app/",
     "build:scss": "node-sass src/scss --output app/public/styles",
-    "lint": "eslint .",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint .",
+    "lint:scss": "stylelint \"**/*.scss\" --syntax scss",
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
     "deploy": "npm run create-deployment-package",
     "create-deployment-package": "npm run build && zip -r eb-deployment-package.zip . --exclude node_modules/\\* .git/\\* src/\\* test/\\* coverage/\\* .env"
@@ -51,7 +53,9 @@
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
-    "pre-commit": "^1.1.2"
+    "pre-commit": "^1.1.2",
+    "stylelint": "^5.4.0",
+    "stylelint-config-standard": "^5.0.0"
   },
   "dependencies": {
     "bunyan": "^1.8.0",
