@@ -4,4 +4,4 @@
 [![Dependency Status](https://david-dm.org/csblogs/web-app.svg)](https://david-dm.org/csblogs/web-app)
 [![Slack Status](http://csblogs-slack-signup.azurewebsites.net/badge.svg)](http://csblogs-slack-signup.azurewebsites.net)
 
-The consumer facing hosted at [CS Blogs website](http://csblogs.com)
+The consumer facing website hosted at [csblogs.com](http://csblogs.com)
