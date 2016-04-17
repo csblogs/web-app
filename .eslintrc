@@ -14,9 +14,6 @@
     }],
     "max-len": 0,
     "strict": [2, "global"],
-    "mocha/no-exclusive-tests": 2,
-    "no-multi-spaces": ["error", {
-      exceptions: { "ImportDeclaration": true }
-    }]
+    "mocha/no-exclusive-tests": 2
   }
 }
