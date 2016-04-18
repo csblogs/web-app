@@ -1,1 +1,71 @@
-{{{body}}}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{{_sections.meta}}}
+    <link rel="stylesheet" href="/styles/main.css">
+    {{{_sections.css}}}
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:300italic,400,700%7COpen+Sans:700,600,400,300">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <header id="masthead">
+      <div id="head-content">
+        <a id="site-title" href="/">
+          <svg viewBox="0 0 503.14961 99.212598" preserveaspectratio="xMinYMin meet">
+            <use xlink:href="/images/defs.svg#icon-textlogo"></use>
+          </svg>
+        </a>
+        <div id="nav-bg"></div>
+        <nav id="nav-content">
+          <ul>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/bloggers">Bloggers</a></li>
+            {{#if user}}
+            <li><a href="/logout">Log out</a></li>
+            {{#if user.avatarUrl}}
+            <li><img class="avatar" src="{{user.avatarUrl}}" alt="Avatar"/></li>
+            {{/if}}
+            {{else}}
+            <li id="addblog-btn"><a href="/register">Add your blog</a></li>
+            <li id="addblog-sml-btn"><a href="/register">Add blog</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>{{{body}}}</main>
+    <footer id="body-footer">
+      <hr/>
+      <div id="footer-left">
+        <svg id="footer-logo" viewBox="0 0 496.06299 496.06299">
+          <use xlink:href="/images/defs.svg#icon-logo"></use>
+        </svg>
+        <div id="footer-info">
+          <p>Computer Science Blogs</p>
+          <p>&copy; csblogs.com 2015 | Email: <a href="mailto:contact@csblogs.com">contact@csblogs.com</a></p>
+        </div>
+      </div>
+      <div id="footer-right">
+        <a class="footer-icon" href="http://github.com/csblogs" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
+            <use xlink:href="/images/defs.svg#icon-github"></use>
+          </svg>
+        </a>
+        <a class="footer-icon" href="http://docs.csblogs.com" title="Documentation">
+          <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
+            <use xlink:href="/images/defs.svg#icon-docs"></use>
+          </svg>
+        </a>
+        <a class="footer-icon" href="http://twitter.com/compsciblogs" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
+            <use xlink:href="/images/defs.svg#icon-twitter"></use>
+          </svg>
+        </a>
+      </div>
+    </footer>
+    <!-- <script src="/scripts/svgfix.min.js" type="text/javascript"></script> -->
+  </body>
+</html>

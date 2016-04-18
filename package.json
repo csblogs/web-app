@@ -13,7 +13,7 @@
     "build-and-run": "npm run build && nodemon -r ./app/set-env.js ./app/server.js",
     "build": "npm run build:js && npm run build:scss && npm run watch:hbs",
     "build:js": "rm -rf app/ && babel src/ -d app/ -w &",
-    "build:scss": "node-sass src/scss --output app/public/styles -w &",
+    "build:scss": "node-sass src/public/styles --output app/public/styles -w &",
     "watch:hbs": "nodemon -w src/views -e handlebars -q --exec \"cp\" -r ./src/views ./app &",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint .",

@@ -11,6 +11,7 @@ const port = process.env.PORT;
 
 configureHelmet(app);
 app.use(requestLogger);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoute);
 
