@@ -4,7 +4,7 @@ import path from 'path';
 import log from './log';
 import configureHelmet from './security/configure-helmet';
 import requestLogger from './log/request-logger';
-import indexRoute from './routes/index';
+import indexRoute from './routes/index-route';
 
 const app = express();
 const port = process.env.PORT;
