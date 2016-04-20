@@ -1,13 +1,17 @@
 import * as api from '../helpers/api';
 import log from '../log';
 
-export function test() {
-  api.get('/posts', { author_id: 54 })
-    .then(body => {
-      log.info(body);
-      log.info(body[0].date_updated);
-    })
-    .catch(err => {
-      log.info(err);
-    });
+const PAGE_SIZE = 10;
+
+export function getAllPosts(pageNumber) {
+  api.get('/posts', {
+    page: pageNumber,
+    page_size: PAGE_SIZE
+  })
+  .then(body => {
+    log.info(body);
+  })
+  .catch(err => {
+    log.info(err);
+  });
 }

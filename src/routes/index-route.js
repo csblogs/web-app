@@ -4,7 +4,9 @@ import * as indexController from '../controllers/index-controller';
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', (req, res) => {
-  indexController.test();
+  const pageNumber = req.query.page || 1;
+
+  indexController.getAllPosts(pageNumber);
 
   res.render('index', {
     title: 'Home'
