@@ -5,6 +5,7 @@ import log from './log';
 import configureHelmet from './security/configure-helmet';
 import requestLogger from './log/request-logger';
 import indexRoute from './routes/index-route';
+import * as hbsHelpers from './helpers/handlebars';
 
 const app = express();
 const port = process.env.PORT;
@@ -18,7 +19,8 @@ app.use('/', indexRoute);
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   layoutsDir: 'app/views/layouts/',
-  partialsDir: 'app/views/partials/'
+  partialsDir: 'app/views/partials/',
+  helpers: hbsHelpers
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
