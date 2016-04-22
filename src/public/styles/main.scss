@@ -28,6 +28,7 @@ body {
   }
 
   #nav-content {
+    // float: right;
     display: block;
     position: absolute;
     top: 23px;
@@ -281,7 +282,7 @@ hr {
 
   #head-content {
     #nav-bg {
-      //background: #750008;
+      // background: #750008;
       background: #9f0714;
       display: block;
       position: absolute;
@@ -292,7 +293,7 @@ hr {
     }
 
     #nav-content {
-      float: none;
+      // float: none;
       position: relative;
       margin-top: 15px;
       top: 0;

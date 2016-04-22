@@ -12,7 +12,7 @@ export function getAllPosts(pageNumber) {
 export function getPostAuthors(posts) {
   const ids = new Array(PAGE_SIZE);
 
-  // Add posts author IDs to se
+  // Add posts author IDs to array
   for (let i = 0; i < posts.length; ++i) {
     ids[i] = posts[i].author_id;
   }

@@ -67,20 +67,14 @@ article footer {
   margin-left: -185px;
   padding-right: 10px;
   padding-top: 2px;
+  text-align: right;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.article-author,
-.article-date {
-  display: inline-block;
-  font-family: $sans-serif-font;
-  text-align: right;
-  // float: right;
-}
-
 .article-author {
+  display: inline-block;
   margin-top: 6px;
   margin-bottom: 2px;
   min-width: 100%;
@@ -91,9 +85,10 @@ article footer {
 }
 
 .article-date {
+  display: inline;
   color: #999;
+  font-family: $sans-serif-font;
   font-size: 13px;
-  margin: 0;
 }
 
 .avatar {
