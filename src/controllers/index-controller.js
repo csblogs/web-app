@@ -10,34 +10,26 @@ export function getAllPosts(pageNumber) {
 }
 
 export function getPostAuthors(posts) {
-  // Use a set to store IDs uniquely
-  const ids = new Set();
+  const ids = new Array(PAGE_SIZE);
 
-  // Add posts author IDs to set
+  // Add posts author IDs to se
   for (let i = 0; i < posts.length; ++i) {
-    ids.add(posts[i].author_id);
+    ids[i] = posts[i].author_id;
   }
 
   // Stringify as CSV
-  const idsParams = Array.from(ids).join(',');
+  const idsParams = ids.join(',');
 
   return api.get('users', {
     ids: idsParams
   })
   .then(users => {
-    // Store as hash with author_id as key
-    /* eslint-disable no-param-reassign */
-    const authors = users.reduce((map, user) => {
-      map[user.id] = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        vanity_name: user.vanity_name,
-        profile_picture_uri: user.profile_picture_uri
-      };
-      return map;
-    }, {});
-    /* eslint-enable no-param-reassign */
+    // Return author as a property of each post
+    const postsWithAuthors = posts;
 
-    return { authors, posts };
+    for (let i = 0; i < posts.length; ++i) {
+      postsWithAuthors[i].author = users[posts[i].author_id];
+    }
+    return postsWithAuthors;
   });
 }

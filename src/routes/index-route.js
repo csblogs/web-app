@@ -8,11 +8,10 @@ router.get('/', (req, res) => {
 
   indexController.getAllPosts(pageNumber)
     .then(indexController.getPostAuthors)
-    .then(result => {
+    .then(posts => {
       res.render('index', {
         title: 'Home',
-        posts: result.posts,
-        authors: result.authors
+        posts
       });
     });
 });

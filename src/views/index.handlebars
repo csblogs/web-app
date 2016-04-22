@@ -1,4 +1,56 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/styles/index.css">
+{{/section}}
+
+{{#section 'meta'}}
+<meta name="description" content="CSBlogs.com is the blog aggregation website for Computer Scientists. Here you can find blogs from Computer Science Students, Lecturers and Practitioners."/>
+{{/section}}
+
+<div id="space-saver"></div>
 {{#each posts}}
-  <h1>{{getProp ../authors author_id 'first_name'}} {{getProp ../authors author_id 'last_name'}}</h1>
-  <p>{{title}}</p>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h2 itemprop="headline"><a href="{{link}}">{{title}}</a></h2>
+    </header>
+    {{#if image_uri}}
+    <div class="featured-image">
+      <a href="{{link}}">
+        <img itemprop="image" src="{{image_uri}}" alt="Featured Image"/>
+      </a>
+    </div>
+    {{/if}}
+    <p itemprop="articleBody">{{{truncateAndRemoveHTML description 400}}} <a itemprop="url" class="read-more" href="{{link}}">Read more &#8594;</a></p>
+    <footer>
+      <div class="article-info">
+        <div itemscope itemprop="author" itemtype="https://schema.org/Person">
+          <a class="avatar" href="/bloggers/{{author.vanity_name}}">
+            <img class="avatar" itemprop="image" src="{{author.profile_picture_uri}}" alt="Avatar"/>
+          </a>
+          <a class="article-author" itemprop="sameAs" href="/bloggers/{{author.vanity_name}}">
+            <span itemprop="givenName">{{author.first_name}}</span> <span itemprop="familyName">{{author.last_name}}</span>
+          </a>
+        </div>
+        <p class="article-date" itemprop="datePublished">{{formatDateShort date_published}}</p>
+      </div>
+    </footer>
+    {{#unless @last}}<hr/>{{/unless}}
+  </article>
 {{/each}}
+{{!-- <div id="nav-pages">
+  {{#if hasLess}}
+  <a id="newer" class="page-btn" href="{{url}}page={{add pageNumber -1}}">
+    <svg viewbox="0 0 37.62 67.32">
+      <use xlink:href="/images/defs.svg#left-arrow"></use>
+    </svg>
+    <p>Newer</p>
+  </a>
+  {{/if}}
+  {{#if hasMore}}
+  <a id="older" class="page-btn" href="{{url}}page={{add pageNumber 1}}">
+    <p>Older</p>
+    <svg viewbox="0 0 37.62 67.32">
+      <use xlink:href="/images/defs.svg#right-arrow"></use>
+    </svg>
+  </a>
+  {{/if}}
+</div> --}}

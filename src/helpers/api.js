@@ -15,7 +15,8 @@ export function get(url, params) {
       if (err) {
         log.info(err);
         return reject(err);
-      } else if (res.statusCode !== 200) {
+      }
+      else if (res.statusCode !== 200) {
         const error = new Error(`Unexpected status code: ${res.statusCode}`);
         error.res = res;
         log.info(error);
