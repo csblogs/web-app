@@ -1,9 +1,11 @@
 import moment from 'moment';
 
-export function truncateAndRemoveHTML(string, length) {
-  // return BlogController.truncateAndRemoveHTML(string, length);
-  // Temporary:
-  return string.substring(0, length);
+export function truncateAndRemoveHTML(str, maxLength) {
+  if (str.length > maxLength) {
+    const newStr = str.substring(0, maxLength);
+    return `${newStr.trim()}&hellip;`;
+  }
+  return str;
 }
 
 export function formatDateShort(datestamp) {
@@ -14,8 +16,7 @@ export function formatDateShort(datestamp) {
       return date.format('MMM D, YYYY');
     }
     return date.fromNow();
-  }
-  catch (error) {
+  } catch (error) {
     return '';
   }
 }
@@ -24,8 +25,7 @@ export function formatDateLong(datestamp) {
   try {
     const date = moment(datestamp);
     return date.format('MMMM D, YYYY h:mm a');
-  }
-  catch (error) {
+  } catch (error) {
     return '';
   }
 }

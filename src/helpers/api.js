@@ -13,13 +13,13 @@ export function get(url, params) {
     },
     (err, res, body) => {
       if (err) {
-        log.info(err);
+        log.error(url, err);
         return reject(err);
-      }
-      else if (res.statusCode !== 200) {
+      } else if (res.statusCode !== 200) {
         const error = new Error(`Unexpected status code: ${res.statusCode}`);
         error.res = res;
-        log.info(error);
+        log.error(url, error);
+
         return reject(error);
       }
       return resolve(body);

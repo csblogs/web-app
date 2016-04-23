@@ -14,7 +14,6 @@
     }],
     "max-len": 0,
     "strict": [2, "global"],
-    "mocha/no-exclusive-tests": 2,
-    "brace-style": [2, "stroustrup"]
+    "mocha/no-exclusive-tests": 2
   }
 }
