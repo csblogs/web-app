@@ -218,6 +218,14 @@ hr {
   margin-bottom: 14px;
 }
 
+.serif-header {
+  font-style: italic;
+  text-align: center;
+  margin: 50px 0;
+  font-size: 24px;
+  font-family: $serif-font;
+}
+
 .alert-box {
   padding: 10px 10px 10px 10px;
   background-color: #fbf5ef;

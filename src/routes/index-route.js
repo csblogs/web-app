@@ -9,12 +9,18 @@ router.get('/', (req, res, next) => {
   indexController.getAllPosts(pageNumber)
     .then(indexController.getPostAuthors)
     .then(posts => {
-      res.render('index', {
-        title: 'Home',
-        hasLess: pageNumber > 1,
-        pageNumber,
-        posts
-      });
+      if (posts.length === 0) {
+        res.render('end-of-posts', {
+          title: 'No more posts'
+        });
+      } else {
+        res.render('index', {
+          title: 'Home',
+          hasLess: pageNumber > 1,
+          pageNumber,
+          posts
+        });
+      }
     })
     .catch(err => {
       next(err);
