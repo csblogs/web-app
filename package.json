@@ -11,10 +11,12 @@
     "start-production": "node ./app/server.js",
     "create-env": "cp .env.sample .env",
     "build-and-run": "npm run build && nodemon -r ./app/set-env.js ./app/server.js",
-    "build": "npm run build:js && npm run build:scss && npm run watch:hbs",
+    "build": "npm run build:js && npm run watch:hbs && npm run build:scss && npm run watch:scss && npm run copy:public",
     "build:js": "rm -rf app/ && babel src/ -d app/ -w &",
-    "build:scss": "node-sass src/scss --output app/public/styles -w &",
+    "build:scss": "node-sass ./src/public/styles --output ./app/public/styles",
     "watch:hbs": "nodemon -w src/views -e handlebars -q --exec \"cp\" -r ./src/views ./app &",
+    "watch:scss": "node-sass ./src/public/styles --output ./app/public/styles -w &",
+    "copy:public": "rsync -r ./src/public ./app --exclude styles",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint .",
     "lint:scss": "stylelint \"**/*.scss\" --syntax scss",
@@ -65,6 +67,8 @@
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
-    "helmet": "^1.3.0"
+    "helmet": "^1.3.0",
+    "moment": "^2.13.0",
+    "request": "^2.72.0"
   }
 }
