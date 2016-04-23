@@ -13,7 +13,7 @@ export function get(url, params) {
     },
     (err, res, body) => {
       if (err) {
-        log.error(url, err);
+        log.error({ url, err }, 'Error from API request');
         return reject(err);
       } else if (res.statusCode !== 200) {
         // Try to get error from JSON response
@@ -21,9 +21,8 @@ export function get(url, params) {
         const error = new Error(errorMessage);
 
         error.status = res.statusCode;
-        error.res = res;
-        log.error(url, error);
 
+        log.error({ url, res }, errorMessage);
         return reject(error);
       }
       return resolve(body);

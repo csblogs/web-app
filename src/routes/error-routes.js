@@ -9,7 +9,7 @@ export function notFoundHandler(req, res, next) {
 
 // Handle all other errors
 export function errorHandler(err, req, res, next) {
-  log.error(req.url, err);
+  log.error({ url: req.url, err }, 'An error occurred serving route');
 
   // Delegate to the default error handler if
   // already started responding
