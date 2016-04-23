@@ -37,3 +37,13 @@ export function section(name, options) {
   this._sections[name] = options.fn(this);
   return null;
 }
+
+export function add(strNum1, strNum2) {
+  const number1 = parseInt(strNum1, 10);
+  const number2 = parseInt(strNum2, 10);
+
+  if (isNaN(number1) || isNaN(number2)) {
+    return '';
+  }
+  return number1 + number2;
+}

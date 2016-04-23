@@ -4,7 +4,7 @@ const PAGE_SIZE = 10;
 
 export function getAllPosts(pageNumber) {
   return api.get('posts', {
-    page: pageNumber,
+    page: pageNumber - 1,
     page_size: PAGE_SIZE
   });
 }
