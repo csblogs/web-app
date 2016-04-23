@@ -20,7 +20,8 @@
     "lint:scss": "stylelint \"**/*.scss\" --syntax scss",
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
     "deploy": "npm run create-deployment-package",
-    "create-deployment-package": "npm run build && zip -r eb-deployment-package.zip . --exclude node_modules/\\* .git/\\* src/\\* test/\\* coverage/\\* .env"
+    "create-deployment-package": "npm run build && zip -r eb-deployment-package.zip . --exclude node_modules/\\* .git/\\* src/\\* test/\\* coverage/\\* .env",
+    "travis-ci": "npm run test && npm run lint"
   },
   "pre-commit": [
     "lint",
