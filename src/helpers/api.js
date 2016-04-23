@@ -16,7 +16,11 @@ export function get(url, params) {
         log.error(url, err);
         return reject(err);
       } else if (res.statusCode !== 200) {
-        const error = new Error(`Unexpected status code: ${res.statusCode}`);
+        // Try to get error from JSON response
+        const errorMessage = body.error || `Unexpected status code: ${res.statusCode}`;
+        const error = new Error(errorMessage);
+
+        error.status = res.statusCode;
         error.res = res;
         log.error(url, error);
 

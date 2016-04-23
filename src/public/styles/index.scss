@@ -78,10 +78,13 @@ article footer {
   margin-top: 6px;
   margin-bottom: 2px;
   min-width: 100%;
-  font-weight: 600;
-  text-decoration: none;
-  word-wrap: break-word;
-  color: $heading-color;
+
+  & > a {
+    font-weight: 600;
+    text-decoration: none;
+    word-wrap: break-word;
+    color: $heading-color;
+  }
 }
 
 .article-date {

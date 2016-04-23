@@ -26,9 +26,12 @@
           <a class="avatar" href="/bloggers/{{author.vanity_name}}">
             <img class="avatar" itemprop="image" src="{{author.profile_picture_uri}}" alt="Avatar"/>
           </a>
-          <a class="article-author" itemprop="sameAs" href="/bloggers/{{author.vanity_name}}">
-            <span itemprop="givenName">{{author.first_name}}</span> <span itemprop="familyName">{{author.last_name}}</span>
-          </a>
+          <div class="article-author">
+            <a itemprop="sameAs" href="/bloggers/{{author.vanity_name}}">
+              <span itemprop="givenName">{{author.first_name}}</span>
+              <span itemprop="familyName">{{author.last_name}}</span>
+            </a>
+          </div>
         </div>
         <p class="article-date" itemprop="datePublished">{{formatDateShort date_published}}</p>
       </div>
