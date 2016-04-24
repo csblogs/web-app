@@ -141,6 +141,54 @@ hr {
   object-fit: cover;
 }
 
+#nav-pages {
+  margin: 18px 8px 0 8px;
+}
+
+#nav-pages::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.page-btn {
+  position: relative;
+  text-decoration: none;
+
+  svg {
+    width: 18px;
+    margin: 0 4px;
+    fill: $link-color;
+  }
+
+  p {
+    font-family: $sans-serif-font;
+    font-size: 20px;
+    color: $link-color;
+    line-height: 1em;
+    margin: 0;
+    margin-top: 6px;
+    vertical-align: top;
+  }
+
+  * {
+    display: inline-block;
+  }
+}
+
+.page-btn:hover * {
+  color: $accent-color;
+  fill: $accent-color;
+}
+
+#newer {
+  float: left;
+}
+
+#older {
+  float: right;
+}
+
 #body-footer {
   height: 100px;
   margin: 0 auto;
