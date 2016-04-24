@@ -40,14 +40,12 @@ main img {
 
 main p {
   text-align: justify;
-  -webkit-hyphens: auto;
   hyphens: auto;
 }
 
 @media screen and (max-width: 480px) {
   main p {
     text-align: left;
-    -webkit-hyphens: none;
     hyphens: none;
   }
 
