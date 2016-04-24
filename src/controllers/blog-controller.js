@@ -9,6 +9,14 @@ export function getAllPosts(pageNumber) {
   });
 }
 
+export function getBloggerPosts(vanityName, pageNumber) {
+  return api.get('posts', {
+    vanity_name: vanityName,
+    page: pageNumber - 1,
+    page_size: PAGE_SIZE
+  });
+}
+
 export function getPostAuthors(posts) {
   // Add posts author IDs to array
   const ids = posts.map(post => post.author_id);
@@ -28,4 +36,8 @@ export function getPostAuthors(posts) {
     }
     return postsWithAuthors;
   });
+}
+
+export function getPageSize() {
+  return PAGE_SIZE;
 }

@@ -1,0 +1,42 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/styles/bloggers.css">
+{{/section}}
+
+{{#section 'meta'}}
+<meta name="description" content="Computer Science Blogs is the feed aggregation service for the writings of Computer Science students, academics, researchers and those in industry listed here."/>
+<meta property="og:title" content="List of Computer Science Bloggers"/>
+<meta property="og:description" content="Computer Science Blogs is the feed aggregation service for the writings of Computer Science students, academics, researchers and those in industry listed here."/>
+{{/section}}
+
+<ul class="blogger-list">
+  {{#each bloggers}}
+  <li class="blogger-item" itemscope itemprop="author" itemtype="https://schema.org/Person">
+    <a class="avatar" href="/bloggers/{{vanity_name}}" itemprop="sameAs">
+      <img class="avatar" src="{{profile_picture_uri}}" alt="Avatar" itemprop="image"/>
+    </a>
+    <h2>
+      <span itemprop="givenName">{{first_name}}</span>
+      <span itemprop="familyName">{{last_name}}</span>
+    </h2>
+    <a href="{{website_uri}}" itemprop="url">{{urlFormat website_uri}}</a>
+  </li>
+  {{/each}}
+</ul>
+<div id="nav-pages">
+  {{#if hasLess}}
+  <a id="newer" class="page-btn" href="/bloggers?page={{add pageNumber -1}}">
+    <svg viewbox="0 0 37.62 67.32">
+      <use xlink:href="/images/defs.svg#left-arrow"></use>
+    </svg>
+    <p>Previous</p>
+  </a>
+  {{/if}}
+  {{#if hasMore}}
+  <a id="older" class="page-btn" href="/bloggers?page={{add pageNumber 1}}">
+    <p>Next</p>
+    <svg viewbox="0 0 37.62 67.32">
+      <use xlink:href="/images/defs.svg#right-arrow"></use>
+    </svg>
+  </a>
+  {{/if}}
+</div>

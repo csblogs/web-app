@@ -1,29 +1,28 @@
 import express from 'express';
-import * as blogController from '../controllers/blog-controller';
+import * as bloggerController from '../controllers/blogger-controller';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', (req, res, next) => {
   const pageNumber = req.query.page || 1;
 
-  blogController.getAllPosts(pageNumber)
-    .then(blogController.getPostAuthors)
-    .then(posts => {
-      if (posts.length === 0) {
+  bloggerController.getAllBloggers(pageNumber)
+    .then(bloggers => {
+      if (bloggers.length === 0) {
         res.render('info', {
-          title: 'No more posts',
-          description: 'No more posts to read.'
+          title: 'No more bloggers',
+          description: 'No more bloggers to see.'
         });
       } else {
-        const hasMore = posts.length === blogController.getPageSize();
+        const hasMore = bloggers.length === bloggerController.getPageSize();
         const hasLess = pageNumber > 1;
 
-        res.render('index', {
-          title: 'Home',
+        res.render('bloggers', {
+          title: 'Bloggers',
           hasMore,
           hasLess,
           pageNumber,
-          posts
+          bloggers
         });
       }
     })

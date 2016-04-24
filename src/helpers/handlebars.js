@@ -30,6 +30,19 @@ export function formatDateLong(datestamp) {
   }
 }
 
+export function urlFormat(urlStr) {
+  let url = urlStr;
+
+  if (url && url.lastIndexOf('http://', 0) === 0) {
+    url = url.substring(7);
+
+    if (url.lastIndexOf('www.', 0) === 0) {
+      url = url.substring(4);
+    }
+  }
+  return url;
+}
+
 export function section(name, options) {
   if (!this._sections) {
     this._sections = {};
