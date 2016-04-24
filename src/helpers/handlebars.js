@@ -33,10 +33,10 @@ export function formatDateLong(datestamp) {
 export function urlFormat(urlStr) {
   let url = urlStr;
 
-  if (url && url.lastIndexOf('http://', 0) === 0) {
+  if (url && url.startsWith('http://')) {
     url = url.substring(7);
 
-    if (url.lastIndexOf('www.', 0) === 0) {
+    if (url.startsWith('www.')) {
       url = url.substring(4);
     }
   }
