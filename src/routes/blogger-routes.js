@@ -1,5 +1,6 @@
 import express from 'express';
 import * as bloggerController from '../controllers/blogger-controller';
+import * as blogController from '../controllers/blog-controller';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -33,11 +34,21 @@ router.get('/', (req, res, next) => {
 
 router.get('/:vanity_name', (req, res, next) => {
   const vanityName = req.params.vanity_name;
+  const pageNumber = req.query.page || 1;
+
   bloggerController.getSingleBlogger(vanityName)
     .then(blogger => {
-      res.render('profile', {
-        blogger
-      });
+      blogController.getBloggerPosts(blogger.id, pageNumber)
+        .then(posts => {
+          res.render('profile', {
+            title: `${blogger.first_name} ${blogger.last_name}`,
+            blogger,
+            posts,
+            pageNumber,
+            hasMore: posts.length === blogController.getPageSize(),
+            hasLess: pageNumber > 1
+          });
+        });
     })
     .catch(err => {
       next(err);
