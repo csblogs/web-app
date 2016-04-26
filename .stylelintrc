@@ -2,6 +2,6 @@
   "extends": "stylelint-config-standard",
   "ignoreFiles": [
     "app/*",
-    "src/public/styles/_reset.scss"
+    "**/_reset.scss"
   ]
 }
