@@ -9,9 +9,9 @@ export function getAllPosts(pageNumber) {
   });
 }
 
-export function getBloggerPosts(vanityName, pageNumber) {
+export function getBloggerPosts(bloggerId, pageNumber) {
   return api.get('posts', {
-    vanity_name: vanityName,
+    author_id: bloggerId,
     page: pageNumber - 1,
     page_size: PAGE_SIZE
   });
