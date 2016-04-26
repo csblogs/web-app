@@ -73,18 +73,18 @@
 		<div class="profile-body">
 	        <h3>Blog posts</h3>
 
-	        {{#if page.blogs}}
-	        {{#each page.blogs}}
-	        <article itemscope itemtype="http://schema.org/BlogPosting">
-	            <h4 itemprop="headline"><a href="{{link}}">{{title}}</a></h4>
-	            <p class="article-date" itemprop="datePublished">{{formatDateLong date_published}}</p>
-	            {{#if imageUrl}}<img itemprop="image" src="{{image_uri}}" alt="Featured Image"/>{{/if}}
-	            <p itemprop="articleBody">{{{truncateAndRemoveHTML summary 400}}} <a class="read-more" itemprop="url" href="{{link}}">Read more &#8594;</a></p>
-	            {{#unless @last}}<hr/>{{/unless}}
-	        </article>
-	        {{/each}}
+	        {{#if posts}}
+            {{#each posts}}
+              <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h4 itemprop="headline"><a href="{{link}}">{{title}}</a></h4>
+                <p class="article-date" itemprop="datePublished">{{formatDateLong date_published}}</p>
+                {{#if image_uri}}<img itemprop="image" src="{{image_uri}}" alt="Featured Image"/>{{/if}}
+                <p itemprop="articleBody">{{{truncateAndRemoveHTML description 400}}} <a class="read-more" itemprop="url" href="{{link}}">Read more &#8594;</a></p>
+	              {{#unless @last}}<hr/>{{/unless}}
+              </article>
+            {{/each}}
 	        {{else}}
-	        <p>Blog posts will appear here on the next sync if there are any to view.</p>
+	          <p>Blog posts will appear here on the next sync if there are any to view.</p>
 	        {{/if}}
 
 	        <div id="nav-pages">
