@@ -31,4 +31,17 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.get('/:vanity_name', (req, res, next) => {
+  const vanityName = req.params.vanity_name;
+  bloggerController.getSingleBlogger(vanityName)
+    .then(blogger => {
+      res.render('profile', {
+        blogger
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 export default router;
