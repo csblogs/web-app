@@ -2,12 +2,12 @@
 
 #profile-header .avatar {
   // make a square container
-  width: 140;
-  height: 140;
+  width: 140px;
+  height: 140px;
   margin: 0 auto;
   margin-left: 10;
   display: block;
-  box-shadow: 0 0 0 10 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
   float: left;
   background: #fff;
 }
@@ -30,7 +30,7 @@ main {
 
 #profile-header-content {
   position: relative;
-  max-width: 800;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 25px;
 }
@@ -38,7 +38,7 @@ main {
 #profile-header-title {
   float: left;
   margin-top: 22px;
-  margin-left: 20;
+  margin-left: 20px;
   height: 100%;
 
   p,
@@ -46,7 +46,7 @@ main {
     display: inline-block;
     color: #fff;
     font-family: $sans-serif-font;
-    font-weight: 300;
+    font-weight: 300px;
     text-align: left;
     margin: 0;
     margin-left: 2px;
@@ -65,7 +65,7 @@ main {
   #ph-site {
     position: relative;
     margin: 6px 0 10 2px;
-    font-size: 20;
+    font-size: 20px;
     text-decoration: none;
   }
 
@@ -83,7 +83,7 @@ main {
 
 #edit-btn-wide {
   position: absolute;
-  bottom: -10;
+  bottom: -10px;
   right: 25px;
 }
 
@@ -131,11 +131,11 @@ main {
 .alert-box {
   margin-left: auto;
   margin-right: auto;
-  max-width: 600;
+  max-width: 600px;
 }
 
 .profile-body {
-  max-width: 800;
+  max-width: 800px;
   margin: 0 auto;
   margin-top: 18px;
   padding: 0 25px;
@@ -156,7 +156,7 @@ h3 {
 }
 
 .button {
-  width: 130;
+  width: 130px;
   height: 35px;
   display: inline-block;
   position: relative;
@@ -181,7 +181,7 @@ h3 {
     margin: 0;
     line-height: 1em;
     position: absolute;
-    top: 10;
+    top: 10px;
     left: 42px;
     text-decoration: none;
     margin-bottom: 6px;
@@ -223,7 +223,7 @@ h4 {
 article {
   img {
     max-width: 100%;
-    max-height: 400;
+    max-height: 400px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -275,7 +275,7 @@ hr {
 
   p {
     font-family: $sans-serif-font;
-    font-size: 20;
+    font-size: 20px;
     color: $link-color;
     line-height: 1em;
     margin: 0;
@@ -301,7 +301,7 @@ hr {
   float: right;
 }
 
-@media screen and (max-width: 580) {
+@media screen and (max-width: 580px) {
   #masthead {
     background: #9f0714;
   }
@@ -315,7 +315,7 @@ hr {
     margin: 0 auto;
 
     h2 {
-      margin-top: 20;
+      margin-top: 20px;
       margin-bottom: 2px;
       text-align: center;
       float: none;
@@ -354,7 +354,7 @@ hr {
   }
 }
 
-@media screen and (max-width: 470) {
+@media screen and (max-width: 470px) {
   #edit-btn-wide {
     display: none;
   }
