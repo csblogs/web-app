@@ -22,11 +22,11 @@
     <p class="article-body" itemprop="articleBody">{{{truncateAndRemoveHTML description 400}}} <a itemprop="url" class="read-more" href="{{link}}">Read more &#8594;</a></p>
     <footer>
       <div class="article-info">
-        <div itemscope itemprop="author" itemtype="https://schema.org/Person">
+        <div class="article-author" itemscope itemprop="author" itemtype="https://schema.org/Person">
           <a class="avatar" href="/bloggers/{{author.vanity_name}}">
             <img class="avatar" itemprop="image" src="{{author.profile_picture_uri}}" alt="Avatar"/>
           </a>
-          <a class="article-author" itemprop="sameAs" href="/bloggers/{{author.vanity_name}}">
+          <a class="article-author-name" itemprop="sameAs" href="/bloggers/{{author.vanity_name}}">
             <span itemprop="givenName">{{author.first_name}}</span>
             <span itemprop="familyName">{{author.last_name}}</span>
           </a>
@@ -37,7 +37,7 @@
     {{#unless @last}}<hr/>{{/unless}}
   </article>
 {{/each}}
-<div id="nav-pages">
+<div class="nav-pages clearfix">
   {{#if hasLess}}
   <a id="newer" class="page-btn" href="/?page={{add pageNumber -1}}">
     <svg viewbox="0 0 37.62 67.32">

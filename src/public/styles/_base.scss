@@ -13,7 +13,8 @@ main {
 }
 
 main,
-#body-footer {
+#body-footer,
+.head-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 25px;
@@ -43,6 +44,7 @@ hr {
   height: 1px;
   border: 0;
   border-top: #a2a2a2 1px solid;
+  margin-top: 30px;
 }
 
 .avatar {
@@ -58,28 +60,30 @@ hr {
   text-decoration: underline;
 }
 
-// Pagination buttons
-
-#nav-pages {
-  margin: 18px 8px 0 8px;
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
-#nav-pages::after {
-  content: '';
-  clear: both;
-  display: block;
+// Pagination buttons
+
+.nav-pages {
+  margin: 18px 8px 0 8px;
 }
 
 .page-btn {
   position: relative;
 
   svg {
+    display: inline-block;
     width: 18px;
     margin: 0 4px;
     fill: $link-color;
   }
 
   p {
+    display: inline-block;
     font-family: $sans-serif-font;
     font-size: 20px;
     color: $link-color;
@@ -88,13 +92,10 @@ hr {
     margin-top: 6px;
     vertical-align: top;
   }
-
-  * {
-    display: inline-block;
-  }
 }
 
-.page-btn:hover * {
+.page-btn:hover svg,
+.page-btn:hover p, {
   color: $accent-color;
   fill: $accent-color;
 }
@@ -105,4 +106,19 @@ hr {
 
 #older {
   float: right;
+}
+
+// Error page style
+
+#error-header {
+  color: $accent-color;
+  font-weight: 600;
+  font-size: 8em;
+  text-align: center;
+  margin-top: 12px;
+}
+
+#error-text {
+  font-family: $sans-serif-font;
+  font-size: 18px;
 }

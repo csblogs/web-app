@@ -36,10 +36,6 @@ article header {
   hyphens: auto;
 }
 
-hr {
-  margin-top: 30px;
-}
-
 .article-info {
   width: 160px;
   height: 140px;
@@ -52,7 +48,7 @@ hr {
   left: 0;
 }
 
-.article-author {
+.article-author-name {
   display: inline-block;
   margin-top: 6px;
   margin-bottom: 2px;
@@ -63,7 +59,7 @@ hr {
 
 .article-date {
   display: inline;
-  color: #999;
+  color: $secondary-color;
   font-family: $sans-serif-font;
   font-size: 13px;
 }
@@ -76,24 +72,26 @@ hr {
 }
 
 @media screen and (max-width: 1130px) {
+  .article-author {
+    display: inline-block;
+  }
+
   .article-info {
     position: static;
     margin-left: 0;
     width: 100%;
     height: 40px;
     text-align: left;
+  }
 
-    .article-author {
-      margin-top: 12px;
-      margin-right: 6px;
-      float: left;
-    }
+  .article-author-name {
+    margin-top: 12px;
+    margin-right: 2px;
+  }
 
-    .article-date {
-      margin-top: 8px;
-      font-size: 15px;
-      float: left;
-    }
+  .article-date {
+    margin-top: 8px;
+    font-size: 15px;
   }
 
   .avatar {
@@ -104,7 +102,7 @@ hr {
     float: left;
   }
 
-  article hr {
+  hr {
     margin-top: 20px;
   }
 }
@@ -114,32 +112,29 @@ hr {
     max-height: 350px;
   }
 
-  .article-body {
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 480px) {
   article header {
     font-size: 28px;
   }
 
-  article p {
+  .article-body {
+    font-size: 14px;
     text-align: left;
     hyphens: none;
   }
 }
 
 @media screen and (max-width: 390px) {
-  .article-info .article-author {
+  .article-author {
     display: block;
-    margin-top: 1px;
-    float: none;
   }
 
-  .article-info .article-date {
+  .article-author-name {
+    display: block;
+    margin-top: 1px;
+  }
+
+  .article-date {
     display: block;
     margin-top: 0;
-    float: none;
   }
 }

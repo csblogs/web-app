@@ -1,0 +1,21 @@
+@import 'variables';
+
+#masthead {
+  outline: none;
+}
+
+#profile-header .avatar {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  margin-left: 10;
+  display: block;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
+  float: left;
+  background: #fff;
+}
+
+main {
+  max-width: none;
+  padding: 0;
+}

@@ -1,0 +1,54 @@
+@import 'variables';
+
+.blogger-list {
+  width: 100%;
+  min-height: 75px;
+  margin: 0 auto;
+  margin-top: 24px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.blogger-item {
+  display: inline-block;
+  width: 10em; // 160px
+  margin-left: 1.15em; // 18px
+  margin-right: 1.15em;
+  height: 13.125em;
+}
+
+h2 {
+  margin-top: 0.375em;
+  margin-bottom: 0.25em;
+  font-size: 1.125em;
+}
+
+.site-link {
+  height: 1.2em;
+  margin: 2px 0;
+  font-size: 0.875em;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: $secondary-color;
+}
+
+.avatar {
+  width: 7.66em;
+  height: 7.66em;
+  margin: 0 auto;
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    padding: 0;
+    font-size: 14px;
+  }
+
+  .blogger-item {
+    margin: 0 0.5em;
+  }
+}
