@@ -1,7 +1,7 @@
 @import 'variables';
 
-hr {
-  margin-top: 30px;
+#space-saver {
+  margin-bottom: -10px;
 }
 
 article {
@@ -17,46 +17,7 @@ article header {
 
   a {
     color: $heading-color;
-    text-decoration: none;
   }
-}
-
-#space-saver {
-  margin-bottom: -10px;
-}
-
-main img {
-  max-width: 100%;
-  max-height: 400px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.featured-image {
-  display: flex;
-  justify-content: center;
-}
-
-main p {
-  text-align: justify;
-  hyphens: auto;
-}
-
-@media screen and (max-width: 480px) {
-  main p {
-    text-align: left;
-    hyphens: none;
-  }
-
-  article header {
-    font-size: 28px;
-  }
-}
-
-article footer {
-  position: static;
-  font-size: 100%;
 }
 
 .article-info {
@@ -71,23 +32,18 @@ article footer {
   left: 0;
 }
 
-.article-author {
+.article-author-name {
   display: inline-block;
   margin-top: 6px;
   margin-bottom: 2px;
-  min-width: 100%;
-
-  & > a {
-    font-weight: 600;
-    text-decoration: none;
-    word-wrap: break-word;
-    color: $heading-color;
-  }
+  font-weight: 600;
+  word-wrap: break-word;
+  color: $heading-color;
 }
 
 .article-date {
   display: inline;
-  color: #999;
+  color: $secondary-color;
   font-family: $sans-serif-font;
   font-size: 13px;
 }
@@ -99,22 +55,9 @@ article footer {
   float: right;
 }
 
-.read-more {
-  color: $accent-color;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
 @media screen and (max-width: 1130px) {
-  article footer {
-    padding: 0;
-
-    br {
-      display: none;
-    }
+  .article-author {
+    display: inline-block;
   }
 
   .article-info {
@@ -122,21 +65,17 @@ article footer {
     margin-left: 0;
     width: 100%;
     height: 40px;
+    text-align: left;
+  }
 
-    .article-author {
-      margin-top: 12px;
-      margin-right: 6px;
-      min-width: initial;
-      float: left;
-      text-align: left;
-    }
+  .article-author-name {
+    margin-top: 12px;
+    margin-right: 2px;
+  }
 
-    .article-date {
-      margin-top: 8px;
-      font-size: 15px;
-      float: left;
-      text-align: left;
-    }
+  .article-date {
+    margin-top: 8px;
+    font-size: 15px;
   }
 
   .avatar {
@@ -147,31 +86,33 @@ article footer {
     float: left;
   }
 
-  article hr {
+  hr {
     margin-top: 20px;
   }
 }
 
 @media screen and (max-width: 580px) {
-  main img {
+  .featured-image img {
     max-height: 350px;
   }
 
-  article p {
-    font-size: 14px;
+  article header {
+    font-size: 28px;
   }
 }
 
 @media screen and (max-width: 390px) {
-  .article-info .article-author {
+  .article-author {
     display: block;
-    margin-top: 1px;
-    float: none;
   }
 
-  .article-info .article-date {
+  .article-author-name {
+    display: block;
+    margin-top: 1px;
+  }
+
+  .article-date {
     display: block;
     margin-top: 0;
-    float: none;
   }
 }

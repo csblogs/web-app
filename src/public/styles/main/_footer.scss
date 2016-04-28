@@ -1,0 +1,70 @@
+@import '../variables';
+
+.body-footer {
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 10px;
+  position: relative;
+}
+
+#footer-left {
+  margin-left: 4px;
+  margin-right: 140px;
+  margin-top: 12px;
+}
+
+#footer-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 28px;
+  margin-top: 12px;
+
+  svg {
+    fill: #afafaf;
+  }
+  svg:hover {
+    fill: $accent-color;
+  }
+}
+
+#footer-logo {
+  float: left;
+  width: 70px;
+  height: 70px;
+}
+
+#footer-info {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+
+  p {
+    font-size: 14px;
+    line-height: 120%;
+    font-family: $sans-serif-font;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.footer-icon {
+  float: right;
+  margin-left: 8px;
+  margin-top: 12px;
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (max-width: 390px) {
+  #footer-info {
+    white-space: normal;
+  }
+
+  #footer-left {
+    margin-right: 10px;
+  }
+}

@@ -1,17 +1,5 @@
 @import 'variables';
 
-#profile-header .avatar {
-  // make a square container
-  width: 140px;
-  height: 140px;
-  margin: 0 auto;
-  margin-left: 10px;
-  display: block;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
-  float: left;
-  background: #fff;
-}
-
 #masthead {
   outline: none;
 }
@@ -21,118 +9,65 @@ main {
   padding: 0;
 }
 
-#profile-header {
+// Header
+
+.profile-header {
   background: $accent-color;
-  width: 100%;
   padding-top: 12px;
   padding-bottom: 25px;
 }
 
-#profile-header-content {
-  position: relative;
+.profile-header-content {
+  display: flex;
+  align-items: center;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 25px;
 }
 
-#profile-header-title {
-  float: left;
-  margin-top: 22px;
-  margin-left: 20px;
-  height: 100%;
-
-  p,
-  a {
-    display: inline-block;
-    color: #fff;
-    font-family: $sans-serif-font;
-    font-weight: 300;
-    text-align: left;
-    margin: 0;
-    margin-left: 2px;
-    line-height: 1em;
-  }
-
-  em {
-    font-weight: 400;
-    cursor: pointer;
-  }
-
-  em:hover {
-    text-decoration: underline;
-  }
-
-  #ph-site {
-    position: relative;
-    margin: 6px 0 10px 2px;
-    font-size: 20px;
-    text-decoration: none;
-  }
-
-  // Underline effect for user's site. Better on non-HDPI screens.
-  #ph-site:hover::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 0;
-    left: 0;
-    bottom: 0;
-    border-bottom: 1px solid #fff;
-  }
+.profile-header .avatar {
+  width: 140px;
+  height: 140px;
+  margin: 0 10px;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
+  background: #fff;
 }
 
-#edit-btn-wide {
-  position: absolute;
-  bottom: -10px;
-  right: 25px;
+.profile-info {
+  margin-left: 10px;
+  margin-bottom: 34px;
 }
 
-#edit-li {
-  display: none;
+#profile-name {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 400;
 }
 
-#edit-btn-wide,
-#edit-btn-small {
-  width: 114px;
-  height: 24px;
-  transition: background 0.4s ease-out;
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 6px;
-  padding: 7px 7px;
-  text-decoration: none;
-
-  svg {
-    float: left;
-    height: 24px;
-    fill: rgba(255, 255, 255, 0.85);
-  }
-  p {
-    float: left;
-    font-family: $sans-serif-font;
-    font-weight: 400;
-    margin: 5px 0 0 4px;
-    line-height: 1em;
-    color: rgba(255, 255, 255, 0.85);
-  }
+#profile-site {
+  display: inline-block;
+  position: relative;
+  margin-left: 2px;
+  margin-top: 6px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 20px;
 }
 
-#edit-btn-wide:hover,
-#edit-btn-small:hover {
-  background: rgba(0, 0, 0, 0.28);
+#profile-site:hover {
+  color: #fff;
 }
 
-#profile-header-content::after,
-#edit-btn-wide::after {
+#profile-site:hover::after {
   content: '';
-  clear: both;
-  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #fff;
 }
 
-.alert-box {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 600px;
-}
+// Body
 
 .profile-body {
   max-width: 800px;
@@ -141,54 +76,38 @@ main {
   padding: 0 25px;
 }
 
-h2 {
-  color: #fff;
-  text-align: left;
-  font-size: 36px;
-  font-weight: 400;
-}
-
-h3 {
-  font-style: italic;
-  margin: 16px 0 0 0;
+.subheader {
+  margin: 18px 0 0 0;
   font-size: 26px;
-  font-family: "Merriweather", serif;
 }
 
-.button {
-  width: 130px;
-  height: 35px;
+.pill {
   display: inline-block;
   position: relative;
+  width: 130px;
+  height: 35px;
   background: #e6e6e6;
   border-radius: 35px;
   margin-right: 2px;
   margin-bottom: 8px;
-  cursor: pointer;
   z-index: 0;
 
   svg {
-    position: relative;
-    display: inline-block;
     width: 35px;
     height: 35px;
-    fill: #999;
-    z-index: 2;
+    fill: $secondary-color;
   }
 
   p {
     font-family: $sans-serif-font;
     margin: 0;
-    line-height: 1em;
     position: absolute;
-    top: 10px;
+    top: 5px;
     left: 42px;
-    text-decoration: none;
-    margin-bottom: 6px;
   }
 }
 
-.button:hover {
+.pill:hover {
   svg {
     fill: $accent-color;
   }
@@ -197,15 +116,15 @@ h3 {
   }
 }
 
-.button-bg {
+.pill-background {
   position: absolute;
   top: 1px;
   left: 1px;
-  z-index: 1;
+  z-index: -1;
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  background: white;
+  background: #fff;
 }
 
 h4 {
@@ -220,85 +139,16 @@ h4 {
   }
 }
 
-article {
-  img {
-    max-width: 100%;
-    max-height: 400px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .article-date {
-  display: inline-block;
   font-family: $sans-serif-font;
-  text-align: left;
-  color: #999;
-  font-size: 13px;
+  color: $secondary-color;
+  font-size: 14px;
   margin: 0;
   margin-bottom: 6px;
 }
 
-.read-more {
-  color: $accent-color;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-hr {
-  margin-top: 16px;
-}
-
-#nav-pages {
-  margin: 18px 8px 0 8px;
-}
-
-#nav-pages::after {
-  content: '';
-  clear: both;
-  display: block;
-}
-
-.page-btn {
-  position: relative;
-  text-decoration: none;
-
-  svg {
-    width: 18px;
-    margin: 0 4px;
-    fill: $link-color;
-  }
-
-  p {
-    font-family: $sans-serif-font;
-    font-size: 20px;
-    color: $link-color;
-    line-height: 1em;
-    margin: 0;
-    margin-top: 6px;
-    vertical-align: top;
-  }
-
-  * {
-    display: inline-block;
-  }
-}
-
-.page-btn:hover * {
-  color: $accent-color;
-  fill: $accent-color;
-}
-
-#newer {
-  float: left;
-}
-
-#older {
-  float: right;
+main hr {
+  margin: 25px 0;
 }
 
 @media screen and (max-width: 580px) {
@@ -310,61 +160,28 @@ hr {
     visibility: hidden;
   }
 
-  #profile-header-title {
-    float: none;
-    margin: 0 auto;
-
-    h2 {
-      margin-top: 20px;
-      margin-bottom: 2px;
-      text-align: center;
-      float: none;
-    }
-
-    li:not(#edit-li) {
-      display: block;
-    }
-
-    li {
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 10%;
-    }
-
-    p {
-      margin-left: 0;
-      text-align: center;
-    }
+  .profile-header {
+    padding-top: 28px;
   }
 
-  #edit-btn-wide {
-    top: -8px;
-    right: 16px;
-    bottom: auto;
+  .profile-header-content {
+    flex-direction: column;
   }
 
-  #profile-header .avatar {
-    margin-top: 15px;
-    margin-left: auto;
-    float: none;
+  .profile-info {
+    margin: 0;
+    margin-top: 20px;
+    text-align: center;
   }
 
-  article p {
-    font-size: 14px;
+  #profile-site {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
 
 @media screen and (max-width: 470px) {
-  #edit-btn-wide {
-    display: none;
-  }
-
-  #profile-header-title #edit-li {
-    display: block;
-    margin-top: 12px;
-  }
-
-  #profile-header {
-    padding-bottom: 12px;
+  .profile-info {
+    padding: 0 15px;
   }
 }
