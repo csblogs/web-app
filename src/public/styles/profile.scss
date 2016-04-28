@@ -77,7 +77,7 @@ main {
 }
 
 .subheader {
-  margin: 16px 0 0 0;
+  margin: 18px 0 0 0;
   font-size: 26px;
 }
 
@@ -127,6 +127,30 @@ main {
   background: #fff;
 }
 
+h4 {
+  margin: 14px 0 6px 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+
+  a {
+    color: $heading-color;
+    text-decoration: none;
+  }
+}
+
+.article-date {
+  font-family: $sans-serif-font;
+  color: $secondary-color;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+main hr {
+  margin: 25px 0;
+}
+
 @media screen and (max-width: 580px) {
   #masthead {
     background: #9f0714;
@@ -152,5 +176,12 @@ main {
 
   #profile-site {
     margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .profile-info {
+    padding: 0 15px;
   }
 }

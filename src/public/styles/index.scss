@@ -20,22 +20,6 @@ article header {
   }
 }
 
-.featured-image {
-  display: flex;
-  justify-content: center;
-
-  img {
-    max-width: 100%;
-    max-height: 400px;
-    display: block;
-  }
-}
-
-.article-body {
-  text-align: justify;
-  hyphens: auto;
-}
-
 .article-info {
   width: 160px;
   height: 140px;
@@ -114,12 +98,6 @@ article header {
 
   article header {
     font-size: 28px;
-  }
-
-  .article-body {
-    font-size: 14px;
-    text-align: left;
-    hyphens: none;
   }
 }
 

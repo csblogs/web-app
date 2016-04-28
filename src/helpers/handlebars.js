@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function truncateAndRemoveHTML(str, maxLength) {
+export function truncate(str, maxLength) {
   if (str.length > maxLength) {
     const newStr = str.substring(0, maxLength);
     return `${newStr.trim()}&hellip;`;
