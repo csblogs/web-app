@@ -29,6 +29,17 @@ main,
   }
 }
 
+.subheader {
+  font-style: italic;
+  font-family: $serif-font;
+}
+
+.subheader.info {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 24px;
+}
+
 p {
   font-size: 16px;
   font-weight: 400;

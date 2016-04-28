@@ -9,6 +9,8 @@ main {
   padding: 0;
 }
 
+// Header
+
 .profile-header {
   background: $accent-color;
   padding-top: 12px;
@@ -57,13 +59,72 @@ main {
 }
 
 #profile-site:hover::after {
-  // Underline
   content: '';
   position: absolute;
   width: 100%;
   left: 0;
   bottom: 0;
   border-bottom: 1px solid #fff;
+}
+
+// Body
+
+.profile-body {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 18px;
+  padding: 0 25px;
+}
+
+.subheader {
+  margin: 16px 0 0 0;
+  font-size: 26px;
+}
+
+.pill {
+  display: inline-block;
+  position: relative;
+  width: 130px;
+  height: 35px;
+  background: #e6e6e6;
+  border-radius: 35px;
+  margin-right: 2px;
+  margin-bottom: 8px;
+  z-index: 0;
+
+  svg {
+    width: 35px;
+    height: 35px;
+    fill: $secondary-color;
+  }
+
+  p {
+    font-family: $sans-serif-font;
+    margin: 0;
+    position: absolute;
+    top: 5px;
+    left: 42px;
+  }
+}
+
+.pill:hover {
+  svg {
+    fill: $accent-color;
+  }
+  p {
+    color: $accent-color;
+  }
+}
+
+.pill-background {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  z-index: -1;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #fff;
 }
 
 @media screen and (max-width: 580px) {

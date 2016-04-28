@@ -28,50 +28,26 @@
       </div>
     </div>
   </div>
-  {{!-- <div class="profile-body">
-    <h3>About</h3>
+  <div class="profile-body">
+    <h3 class="subheader">About</h3>
     <p itemprop="description">{{blogger.bio}}</p>
     <div>
       {{#if blogger.github_username}}
-      <a class="button" href="http://github.com/{{blogger.github_username}}" itemprop="url">
-        <div class="button-bg"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-          <use xlink:href="/images/defs.svg#icon-github"></use>
-        </svg>
-        <p>GitHub</p>
-      </a>
+      {{> pill baseurl='https://github.com/' id=blogger.github_username svg='github' label='GitHub'}}
       {{/if}}
       {{#if blogger.twitter_username}}
-      <a class="button" href="http://twitter.com/{{blogger.twitter_username}}" itemprop="url">
-        <div class="button-bg"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-          <use xlink:href="/images/defs.svg#icon-twitter"></use>
-        </svg>
-        <p>Twitter</p>
-      </a>
+      {{> pill baseurl='https://twitter.com/' id=blogger.twitter_username svg='twitter' label='Twitter'}}
       {{/if}}
       {{#if blogger.linkedin_uri}}
-      <a class="button" href="{{blogger.linkedin_uri}}" itemprop="url">
-        <div class="button-bg"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-          <use xlink:href="/images/defs.svg#icon-linkedin"></use>
-        </svg>
-        <p>LinkedIn</p>
-      </a>
+      {{> pill baseurl=blogger.linkedin_uri id='' svg='linkedin' label='LinkedIn'}}
       {{/if}}
       {{#if blogger.cv_uri}}
-      <a class="button" href="{{blogger.cv_uri}}" itemprop="url">
-        <div class="button-bg"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-          <use xlink:href="/images/defs.svg#icon-cv"></use>
-        </svg>
-        <p>CV</p>
-      </a>
+      {{> pill baseurl=blogger.cv_uri id='' svg='cv' label='CV'}}
       {{/if}}
     </div>
   </div>
-  <div class="profile-body">
-    <h3>Blog posts</h3>
+  <!-- <div class="profile-body">
+    <h3 class="subheader">Blog posts</h3>
 
     {{#if posts}}
     {{#each posts}}
@@ -105,5 +81,5 @@
       </a>
       {{/if}}
     </div>
-  </div> --}}
+  </div> -->
 </div>
