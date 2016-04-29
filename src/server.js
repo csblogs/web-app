@@ -6,6 +6,7 @@ import configureHelmet from './security/configure-helmet';
 import requestLogger from './log/request-logger';
 import indexRoute from './routes/index-route';
 import bloggerRoutes from './routes/blogger-routes';
+import accountRoutes from './routes/account-routes';
 import * as errorRoutes from './routes/error-routes';
 import * as hbsHelpers from './helpers/handlebars';
 
@@ -17,6 +18,7 @@ app.use(requestLogger);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoute);
+app.use('/', accountRoutes);
 app.use('/bloggers', bloggerRoutes);
 app.use(errorRoutes.notFoundHandler);
 app.use(errorRoutes.errorHandler);

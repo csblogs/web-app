@@ -1,0 +1,66 @@
+@import 'variables';
+
+main {
+  padding: 0;
+}
+
+hr {
+  margin-top: 20px;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+#login-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  a {
+    display: block;
+    width: 125px;
+    margin: 0 10px;
+    text-align: center;
+  }
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    fill: $link-color;
+  }
+
+  p {
+    margin: 4px 0;
+    font-family: $sans-serif-font;
+  }
+}
+
+#login-stackex:hover {
+  svg,
+  p {
+    fill: #f47a20;
+    color: #f47a20;
+  }
+}
+
+#login-github:hover {
+  svg,
+  p {
+    fill: #682a81;
+    color: #682a81;
+  }
+}
+
+#login-wordpress:hover {
+  svg,
+  p {
+    fill: #21759b;
+    color: #21759b;
+  }
+}
