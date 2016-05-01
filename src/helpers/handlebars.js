@@ -65,3 +65,7 @@ export function add(strNum1, strNum2) {
   }
   return number1 + number2;
 }
+
+export function svg(name) {
+  return `/public/images/defs-069a8abc47.svg#${name}`;
+}

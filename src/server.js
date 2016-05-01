@@ -1,5 +1,6 @@
 import express from 'express';
 import exphbs from 'express-handlebars';
+import assets from 'express-asset-versions';
 import path from 'path';
 import log from './log';
 import configureHelmet from './security/configure-helmet';
@@ -12,10 +13,15 @@ import * as hbsHelpers from './helpers/handlebars';
 
 const app = express();
 const port = process.env.PORT;
+const assetPath = path.join(__dirname, 'public');
+
+// Set static file max age to 1 year in production mode
+const maxAge = process.env.NODE_ENV === 'production' ? 31556952000 : 0;
 
 configureHelmet(app);
 app.use(requestLogger);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(assetPath, { maxAge }));
+app.use(assets('/public', assetPath));
 
 app.use('/', indexRoute);
 app.use('/', accountRoutes);

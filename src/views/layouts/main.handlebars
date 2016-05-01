@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{{_sections.meta}}}
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="{{asset '/styles/main.css' 0}}">
     {{{_sections.css}}}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300italic,400,700%7COpen+Sans:700,600,400,300">
     <title>{{title}} / CS Blogs</title>
   </head>
   <body>
@@ -15,7 +14,7 @@
       <div class="head-container">
         <a id="site-title" href="/">
           <svg viewBox="0 0 503.14961 99.212598" preserveaspectratio="xMinYMin meet">
-            <use xlink:href="/images/defs.svg#icon-textlogo"></use>
+            <use xlink:href="{{svg 'icon-textlogo'}}"></use>
           </svg>
         </a>
         <div id="nav-bg"></div>
@@ -41,7 +40,7 @@
       <hr/>
       <div id="footer-left">
         <svg id="footer-logo" viewBox="0 0 496.06299 496.06299">
-          <use xlink:href="/images/defs.svg#icon-logo"></use>
+          <use xlink:href="{{svg 'icon-logo'}}"></use>
         </svg>
         <div id="footer-info">
           <p>Computer Science Blogs</p>
@@ -51,17 +50,17 @@
       <div id="footer-right">
         <a class="footer-icon" href="http://github.com/csblogs" title="GitHub">
           <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-            <use xlink:href="/images/defs.svg#icon-github"></use>
+            <use xlink:href="{{svg 'icon-github'}}"></use>
           </svg>
         </a>
         <a class="footer-icon" href="http://docs.csblogs.com" title="Documentation">
           <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-            <use xlink:href="/images/defs.svg#icon-docs"></use>
+            <use xlink:href="{{svg 'icon-docs'}}"></use>
           </svg>
         </a>
         <a class="footer-icon" href="http://twitter.com/compsciblogs" title="Twitter">
           <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 42 42" version="1.1">
-            <use xlink:href="/images/defs.svg#icon-twitter"></use>
+            <use xlink:href="{{svg 'icon-twitter'}}"></use>
           </svg>
         </a>
       </div>
