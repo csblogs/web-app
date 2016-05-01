@@ -1,0 +1,69 @@
+/* Webfont: Merriweather - Light Italic */
+@font-face {
+  font-family: 'Merriweather';
+  src:
+    url('../fonts/Merriweather-LightItalic.woff2') format('woff2'),
+    url('../fonts/Merriweather-LightItalic.woff') format('woff');
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Webfont: Merriweather - Regular */
+@font-face {
+  font-family: 'Merriweather';
+  src:
+    url('../fonts/Merriweather-Regular.woff2') format('woff2'),
+    url('../fonts/Merriweather-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Webfont: Merriweather - Bold */
+@font-face {
+  font-family: 'Merriweather';
+  src:
+    url('../fonts/Merriweather-Bold.woff2') format('woff2'),
+    url('../fonts/Merriweather-Bold.woff') format('woff');
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Webfont: Open Sans - Light */
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    url('../fonts/OpenSans-Light.woff2') format('woff2'),
+    url('../fonts/OpenSans-Light.woff') format('woff');
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* Webfont: Open Sans - Regular */
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    url('../fonts/OpenSans-Regular.woff2') format('woff2'),
+    url('../fonts/OpenSans-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Webfont: Open Sans - Semibold */
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    url('../fonts/OpenSans-Semibold.woff2') format('woff2'),
+    url('../fonts/OpenSans-Semibold.woff') format('woff');
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Webfont: Open Sans - Bold */
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    url('../fonts/OpenSans-Bold.woff2') format('woff2'),
+    url('../fonts/OpenSans-Bold.woff') format('woff');
+  font-style: normal;
+  font-weight: 700;
+}
