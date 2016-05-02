@@ -3,11 +3,12 @@ import log from '../log';
 
 const BASE_URL = 'https://newapi.csblogs.com/v2.0/';
 
-export function get(url, params) {
+export function get(url, params, auth) {
   return new Promise((resolve, reject) => {
     request.get({
       baseUrl: BASE_URL,
       url,
+      auth,
       qs: params,
       json: true
     },

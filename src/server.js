@@ -1,6 +1,7 @@
 import express from 'express';
 import exphbs from 'express-handlebars';
 import assets from 'express-asset-versions';
+import session from 'express-session';
 import path from 'path';
 import log from './log';
 import configureHelmet from './security/configure-helmet';
@@ -8,6 +9,8 @@ import requestLogger from './log/request-logger';
 import indexRoute from './routes/index-route';
 import bloggerRoutes from './routes/blogger-routes';
 import accountRoutes from './routes/account-routes';
+import authRoutes from './routes/auth-routes';
+import { passport } from './helpers/authentication';
 import * as errorRoutes from './routes/error-routes';
 import * as hbsHelpers from './helpers/handlebars';
 
@@ -20,12 +23,20 @@ const maxAge = process.env.NODE_ENV === 'production' ? 31556952000 : 0;
 
 configureHelmet(app);
 app.use(requestLogger);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/public', express.static(assetPath, { maxAge }));
 app.use(assets('/public', assetPath));
 
 app.use('/', indexRoute);
 app.use('/', accountRoutes);
 app.use('/bloggers', bloggerRoutes);
+app.use('/auth', authRoutes);
 app.use(errorRoutes.notFoundHandler);
 app.use(errorRoutes.errorHandler);
 

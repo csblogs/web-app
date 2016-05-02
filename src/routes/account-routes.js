@@ -8,4 +8,9 @@ router.get('/login', (req, res) => {
   });
 });
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
 export default router;
