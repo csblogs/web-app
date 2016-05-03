@@ -4,6 +4,7 @@ import * as blogController from '../controllers/blog-controller';
 import { ensureAuthenticated } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
+const isProduction = process.env.NODE_ENV === 'production';
 
 router.get('/login', (req, res) => {
   res.render('login', {
@@ -12,6 +13,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+  res.clearCookie('user_avatar_url');
   req.logout();
   res.redirect('/');
 });
@@ -21,6 +23,14 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
 
   bloggerController.getLoggedInBlogger(req.user.token)
     .then(blogger => {
+      res.cookie('user_avatar_url', blogger.profile_picture_uri, {
+        httpOnly: true,
+        secure: isProduction
+      });
+      /* eslint-disable no-param-reassign */
+      res.locals.user_avatar_url = blogger.profile_picture_uri;
+      /* eslint-enable no-param-reassign */
+
       blogController.getBloggerPosts(blogger.id, pageNumber)
         .then(posts => {
           const hasMore = posts.length === blogController.getPageSize();
