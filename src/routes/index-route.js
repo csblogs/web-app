@@ -1,15 +1,10 @@
 import express from 'express';
-import log from '../log';
 import * as blogController from '../controllers/blog-controller';
-import * as auth from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
-const ensureAuthenticated = auth.ensureAuthenticated;
 
-router.get('/', ensureAuthenticated, (req, res, next) => {
+router.get('/', (req, res, next) => {
   const pageNumber = req.query.page || 1;
-
-  log.info(req.user, 'API user');
 
   blogController.getAllPosts(pageNumber)
     .then(blogController.getPostAuthors)

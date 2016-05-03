@@ -5,6 +5,14 @@ import * as api from '../helpers/api';
 
 export const passport = _passport;
 
+export function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  // Not logged in
+  return res.redirect('/login');
+}
+
 function authenticateWithAPI(service, accessToken, done) {
   api.get('authentication/token', null, {
     username: service,
@@ -36,11 +44,3 @@ passport.use(new GitHubStrategy({
   log.info(accessToken, refreshToken, profile, 'Authenticated with service');
   authenticateWithAPI('github', accessToken, done);
 }));
-
-export function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  // Not logged in
-  return res.redirect('/login');
-}

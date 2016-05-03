@@ -15,6 +15,10 @@ export function getSingleBlogger(vanityName) {
   });
 }
 
+export function getLoggedInBlogger(token) {
+  return api.getAuth('users/me', token);
+}
+
 export function getPageSize() {
   return PAGE_SIZE;
 }
