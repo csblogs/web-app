@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
           description: 'No more bloggers to see.'
         });
       } else {
-        const hasMore = bloggers.length === bloggerController.getPageSize();
+        const hasMore = bloggers.length === bloggerController.PAGE_SIZE;
         const hasLess = pageNumber > 1;
 
         res.render('bloggers', {
@@ -40,13 +40,16 @@ router.get('/:vanity_name', (req, res, next) => {
     .then(blogger => {
       blogController.getBloggerPosts(blogger.id, pageNumber)
         .then(posts => {
+          const hasMore = posts.length === blogController.PAGE_SIZE;
+          const hasLess = pageNumber > 1;
+
           res.render('profile', {
             title: `${blogger.first_name} ${blogger.last_name}`,
             blogger,
             posts,
             pageNumber,
-            hasMore: posts.length === blogController.getPageSize(),
-            hasLess: pageNumber > 1
+            hasMore,
+            hasLess
           });
         });
     })

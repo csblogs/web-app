@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
           description: 'No more posts to read.'
         });
       } else {
-        const hasMore = posts.length === blogController.getPageSize();
+        const hasMore = posts.length === blogController.PAGE_SIZE;
         const hasLess = pageNumber > 1;
 
         res.render('index', {

@@ -67,6 +67,40 @@ main {
   border-bottom: 1px solid #fff;
 }
 
+.button {
+  width: 114px;
+  height: 24px;
+  transition: background 0.4s ease-out;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  padding: 7px 7px;
+  text-decoration: none;
+
+  svg {
+    float: left;
+    height: 24px;
+    fill: rgba(255, 255, 255, 0.85);
+  }
+
+  p {
+    float: left;
+    font-family: $sans-serif-font;
+    font-weight: 400;
+    margin: 5px 0 0 4px;
+    line-height: 1em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.28);
+  }
+}
+
+#edit-profile-btn {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
 // Body
 
 .profile-body {
@@ -177,6 +211,12 @@ main hr {
   #profile-site {
     margin-left: 0;
     margin-top: 10px;
+  }
+
+  #edit-profile-btn {
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 0;
   }
 }
 

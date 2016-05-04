@@ -1,6 +1,6 @@
 import * as api from '../helpers/api';
 
-const PAGE_SIZE = 10;
+export const PAGE_SIZE = 10;
 
 export function getAllPosts(pageNumber) {
   return api.get('posts', {
@@ -36,8 +36,4 @@ export function getPostAuthors(posts) {
     }
     return postsWithAuthors;
   });
-}
-
-export function getPageSize() {
-  return PAGE_SIZE;
 }

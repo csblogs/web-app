@@ -22,11 +22,9 @@
           <ul>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/bloggers">Bloggers</a></li>
-            {{#if user}}
+            {{#if user_avatar_url}}
             <li><a href="/logout">Log out</a></li>
-            {{#if user.avatarUrl}}
-            <li><img class="avatar" src="{{user.avatarUrl}}" alt="Avatar"/></li>
-            {{/if}}
+            <li><img class="avatar" src="{{user_avatar_url}}" alt="Avatar"/></li>
             {{else}}
             <li id="addblog-btn"><a href="/login">Add your blog</a></li>
             <li id="addblog-sml-btn"><a href="/login">Add blog</a></li>
