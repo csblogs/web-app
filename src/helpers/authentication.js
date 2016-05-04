@@ -13,8 +13,6 @@ export function ensureAuthenticated(req, res, next) {
   return res.redirect('/login');
 }
 
-// TODO: fix /login if you are already logged in
-
 export function avatarFromCookie(req, res, next) {
   /* eslint-disable no-param-reassign */
   if (req.isAuthenticated()) {

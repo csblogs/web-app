@@ -6,10 +6,24 @@ import { ensureAuthenticated } from '../helpers/authentication';
 const router = express.Router(); // eslint-disable-line new-cap
 const isProduction = process.env.NODE_ENV === 'production';
 
-router.get('/login', (req, res) => {
-  res.render('login', {
-    title: 'Login'
+/* eslint-disable no-param-reassign */
+function setAvatarCookie(res, blogger) {
+  res.cookie('user_avatar_url', blogger.profile_picture_uri, {
+    httpOnly: true,
+    secure: isProduction
   });
+  res.locals.user_avatar_url = blogger.profile_picture_uri;
+}
+/* eslint-enable no-param-reassign */
+
+router.get('/login', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect('/profile');
+  } else {
+    res.render('login', {
+      title: 'Login'
+    });
+  }
 });
 
 router.get('/logout', (req, res) => {
@@ -23,21 +37,16 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
 
   bloggerController.getLoggedInBlogger(req.user.token)
     .then(blogger => {
-      res.cookie('user_avatar_url', blogger.profile_picture_uri, {
-        httpOnly: true,
-        secure: isProduction
-      });
-      /* eslint-disable no-param-reassign */
-      res.locals.user_avatar_url = blogger.profile_picture_uri;
-      /* eslint-enable no-param-reassign */
+      setAvatarCookie(res, blogger);
 
       blogController.getBloggerPosts(blogger.id, pageNumber)
         .then(posts => {
-          const hasMore = posts.length === blogController.getPageSize();
+          const hasMore = posts.length === blogController.PAGE_SIZE;
           const hasLess = pageNumber > 1;
 
           res.render('profile', {
             title: `${blogger.first_name} ${blogger.last_name}`,
+            loggedIn: true,
             blogger,
             posts,
             pageNumber,

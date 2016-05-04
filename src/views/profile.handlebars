@@ -26,6 +26,14 @@
         </h2>
         <a id="profile-site" href="{{blogger.website_uri}}" itemprop="url">{{urlFormat blogger.website_uri}}</a>
       </div>
+      {{#if loggedIn}}
+      <a id="edit-profile-btn" class="button" href="/account">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 24 24" version="1.1">
+          <use xlink:href="{{svg 'icon-edit'}}"></use>
+        </svg>
+        <p>Edit Profile</p>
+      </a>
+      {{/if}}
     </div>
   </div>
   <div class="profile-body">
