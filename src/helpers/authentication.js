@@ -1,5 +1,7 @@
 import _passport from 'passport';
 import GitHubStrategy from 'passport-github2';
+import { Strategy as WordpressStrategy } from 'passport-wordpress';
+import { Strategy as StackExchangeStrategy } from 'passport-stackexchange';
 import log from '../log';
 import * as api from '../helpers/api';
 
@@ -28,6 +30,7 @@ function authenticateWithAPI(service, accessToken, done) {
     password: accessToken
   })
   .then(res => {
+    log.info(res, 'User authenticated with API');
     done(null, res);
   })
   .catch(err => {
@@ -50,6 +53,26 @@ passport.use(new GitHubStrategy({
   callbackURL: '/auth/github/callback'
 },
 (accessToken, refreshToken, profile, done) => {
-  log.info(accessToken, refreshToken, profile, 'Authenticated with service');
   authenticateWithAPI('github', accessToken, done);
+}));
+
+// WordPress auth
+passport.use(new WordpressStrategy({
+  clientID: process.env.WORDPRESS_CLIENT_ID,
+  clientSecret: process.env.WORDPRESS_CLIENT_SECRET,
+  callbackURL: '/auth/wordpress/callback'
+},
+(accessToken, refreshToken, profile, done) => {
+  authenticateWithAPI('wordpress', accessToken, done);
+}));
+
+// Stack Exchange auth
+passport.use(new StackExchangeStrategy({
+  clientID: process.env.STACK_EX_CLIENT_ID,
+  clientSecret: process.env.STACK_EX_CLIENT_SECRET,
+  key: process.env.STACK_EX_CLIENT_KEY,
+  callbackURL: '/auth/stack-exchange/callback'
+},
+(accessToken, refreshToken, profile, done) => {
+  authenticateWithAPI('stack_exchange', accessToken, done);
 }));
