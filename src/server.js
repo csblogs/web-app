@@ -3,6 +3,7 @@ import exphbs from 'express-handlebars';
 import assets from 'express-asset-versions';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 import path from 'path';
 import log from './log';
 import configureHelmet from './security/configure-helmet';
@@ -24,8 +25,9 @@ const maxAge = process.env.NODE_ENV === 'production' ? 31556952000 : 0;
 
 configureHelmet(app);
 app.use(requestLogger);
+app.use(compression());
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.CSBLOGS_WEB_SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));

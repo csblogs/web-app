@@ -48,8 +48,8 @@ passport.deserializeUser((obj, done) => {
 
 // GitHub auth
 passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  clientID: process.env.CSBLOGS_GITHUB_CLIENT_ID,
+  clientSecret: process.env.CSBLOGS_GITHUB_CLIENT_SECRET,
   callbackURL: '/auth/github/callback'
 },
 (accessToken, refreshToken, profile, done) => {
@@ -58,8 +58,8 @@ passport.use(new GitHubStrategy({
 
 // WordPress auth
 passport.use(new WordpressStrategy({
-  clientID: process.env.WORDPRESS_CLIENT_ID,
-  clientSecret: process.env.WORDPRESS_CLIENT_SECRET,
+  clientID: process.env.CSBLOGS_WORDPRESS_CLIENT_ID,
+  clientSecret: process.env.CSBLOGS_WORDPRESS_CLIENT_SECRET,
   callbackURL: '/auth/wordpress/callback'
 },
 (accessToken, refreshToken, profile, done) => {
@@ -68,9 +68,9 @@ passport.use(new WordpressStrategy({
 
 // Stack Exchange auth
 passport.use(new StackExchangeStrategy({
-  clientID: process.env.STACK_EX_CLIENT_ID,
-  clientSecret: process.env.STACK_EX_CLIENT_SECRET,
-  key: process.env.STACK_EX_CLIENT_KEY,
+  clientID: process.env.CSBLOGS_STACK_EX_CLIENT_ID,
+  clientSecret: process.env.CSBLOGS_STACK_EX_CLIENT_SECRET,
+  key: process.env.CSBLOGS_STACK_EX_CLIENT_KEY,
   callbackURL: '/auth/stack-exchange/callback'
 },
 (accessToken, refreshToken, profile, done) => {
