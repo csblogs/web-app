@@ -16,6 +16,12 @@ function setAvatarCookie(res, blogger) {
 }
 /* eslint-enable no-param-reassign */
 
+router.get('/register', (req, res) => {
+  res.render('register', {
+    title: 'Register'
+  });
+});
+
 router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/profile');

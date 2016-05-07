@@ -73,3 +73,14 @@ export function add(strNum1, strNum2) {
 export function svg(name) {
   return `/public/images/defs-069a8abc47.svg#${name}`;
 }
+
+export function ifInvalid(errors, name) {
+  if (errors) {
+    for (let i = 0; i < errors.length; ++i) {
+      if (errors[i].parameter === name) {
+        return 'class="invalid"';
+      }
+    }
+  }
+  return '';
+}

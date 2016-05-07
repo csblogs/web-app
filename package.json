@@ -19,7 +19,7 @@
     "watch:hbs": "nodemon -w src/views -e handlebars -q --exec \"rsync -r ./src/views ./app\" &",
     "watch:scss": "npm run build:scss && node-sass ./src/public/styles --output ./app/public/styles -w &",
     "copy:hbs": "rsync -r ./src/views ./app",
-    "copy:public": "rsync -r ./src/public ./app --exclude styles --exclude icons && npm run copy:icons",
+    "copy:public": "rsync -r ./src/public ./app --exclude styles --exclude icons --exclude javascripts && npm run copy:icons",
     "copy:icons": "rsync -r ./src/public/icons/ ./app",
     "post:css": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --replace ./app/public/styles/*.css",
     "lint": "npm run lint:js && npm run lint:scss",
