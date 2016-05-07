@@ -1,4 +1,5 @@
 import express from 'express';
+import log from '../log';
 import { passport } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -8,33 +9,40 @@ const redirect = {
 };
 
 /* eslint-disable no-param-reassign */
-function setTokenCookie(req, res) {
-  if (req.user && req.user.token) {
-    res.cookie('user_token', req.user.token, {
-      httpOnly: true,
-      secure: isProduction
-    });
+function authenticated(req, res) {
+  log.info(req.user, 'reached here');
+  if (req.user) {
+    if (req.user.token) {
+      res.cookie('user_token', req.user.token, {
+        httpOnly: true,
+        secure: isProduction
+      });
+      res.redirect('/profile');
+    } else {
+      res.redirect('/register');
+    }
+  } else {
+    throw new Error('No user information provided');
   }
-  res.redirect('/profile');
 }
 /* eslint-enable no-param-reassign */
 
 router.get('/github', passport.authenticate('github'));
 router.get('/github/callback',
   passport.authenticate('github', redirect),
-  setTokenCookie
+  authenticated
 );
 
 router.get('/wordpress', passport.authenticate('wordpress'));
 router.get('/wordpress/callback',
   passport.authenticate('wordpress', redirect),
-  setTokenCookie
+  authenticated
 );
 
 router.get('/stack-exchange', passport.authenticate('stackexchange'));
 router.get('/stack-exchange/callback',
   passport.authenticate('stackexchange', redirect),
-  setTokenCookie
+  authenticated
 );
 
 export default router;

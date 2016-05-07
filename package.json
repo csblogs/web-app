@@ -85,6 +85,7 @@
     "passport-github2": "^0.1.10",
     "passport-stackexchange": "^0.1.0",
     "passport-wordpress": "0.0.4",
-    "request": "^2.75.0"
+    "request": "^2.75.0",
+    "urijs": "^1.18.0"
   }
 }

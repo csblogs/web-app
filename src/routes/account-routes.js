@@ -17,13 +17,20 @@ function setAvatarCookie(res, blogger) {
 /* eslint-enable no-param-reassign */
 
 router.get('/register', (req, res) => {
-  res.render('register', {
-    title: 'Register'
-  });
+  if (req.user && !req.cookies.user_token) {
+    res.render('register', {
+      title: 'Register',
+      submitText: 'Add your blog',
+      postAction: 'register',
+      user: req.user
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 router.get('/login', (req, res) => {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.cookies.user_token) {
     res.redirect('/profile');
   } else {
     res.render('login', {
