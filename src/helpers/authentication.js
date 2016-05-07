@@ -10,7 +10,7 @@ const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
 export const passport = _passport;
 
 export function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.cookies.user_token) {
     return next();
   }
   // Not logged in

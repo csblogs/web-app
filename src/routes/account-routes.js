@@ -34,6 +34,7 @@ router.get('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
   res.clearCookie('user_avatar_url');
+  res.clearCookie('user_token');
   req.logout();
   res.redirect('/');
 });
@@ -41,7 +42,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile', ensureAuthenticated, (req, res, next) => {
   const pageNumber = req.query.page || 1;
 
-  bloggerController.getLoggedInBlogger(req.user.token)
+  bloggerController.getLoggedInBlogger(req.cookies.user_token)
     .then(blogger => {
       setAvatarCookie(res, blogger);
 
