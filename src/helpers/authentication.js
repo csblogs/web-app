@@ -150,7 +150,7 @@ passport.use(new StackExchangeStrategy({
   clientID: process.env.CSBLOGS_STACK_EX_CLIENT_ID,
   clientSecret: process.env.CSBLOGS_STACK_EX_CLIENT_SECRET,
   key: process.env.CSBLOGS_STACK_EX_CLIENT_KEY,
-  callbackURL: `${BASE_URL}/auth/stack-exchange/callback`
+  callbackURL: `${BASE_URL}/auth/stackexchange/callback`
 },
 (accessToken, refreshToken, profile, done) => {
   authenticateWithAPI('stack_exchange', accessToken, profile, done);
