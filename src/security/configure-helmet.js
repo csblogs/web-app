@@ -12,7 +12,7 @@ export default function configureHelmet(app) {
     preload: true
   }));
   app.use(helmet.noSniff());
-  app.use(helmet.ienoopen());
+  app.use(helmet.ieNoOpen());
   app.use(helmet.xssFilter());
   app.use(helmet.frameguard({ action: 'deny' }));
 }

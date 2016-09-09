@@ -73,7 +73,7 @@ main {
   transition: background 0.4s ease-out;
   background: rgba(0, 0, 0, 0.18);
   border-radius: 6px;
-  padding: 7px 7px;
+  padding: 7px;
   text-decoration: none;
 
   svg {
@@ -111,7 +111,7 @@ main {
 }
 
 .subheader {
-  margin: 18px 0 0 0;
+  margin: 18px 0;
   font-size: 26px;
 }
 
@@ -145,6 +145,7 @@ main {
   svg {
     fill: $accent-color;
   }
+
   p {
     color: $accent-color;
   }
@@ -162,7 +163,7 @@ main {
 }
 
 h4 {
-  margin: 14px 0 6px 0;
+  margin: 14px 0 6px;
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -1px;

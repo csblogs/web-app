@@ -34,3 +34,4 @@ node_modules
 
 app/
 .env
+.DS_Store
