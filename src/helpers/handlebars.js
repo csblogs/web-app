@@ -43,17 +43,21 @@ export function urlFormat(urlStr) {
     if (url.startsWith('www.')) {
       url = url.substring(4);
     }
-  } finally {
+
+    return url;
+  } catch (err) {
     return url;
   }
 }
 
 export function section(name, options) {
+  /* eslint-disable no-underscore-dangle */
   if (!this._sections) {
     this._sections = {};
   }
   this._sections[name] = options.fn(this);
   return null;
+  /* eslint-enable no-underscore-dangle */
 }
 
 export function add(strNum1, strNum2) {
