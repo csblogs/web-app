@@ -27,18 +27,6 @@ export function avatarFromCookie(req, res, next) {
   /* eslint-enable no-param-reassign */
 }
 
-// export function getAuthState(req) {
-//   if (req.isAuthenticated()) {
-//     if (req.cookies.user_token) {
-//       return 'loggedIn';
-//     }
-//     if (req.user && !req.user.token) {
-//       return 'registering';
-//     }
-//   }
-//   return 'loggedOut';
-// }
-
 function normalizeVanityName(name) {
   return name.replace(/\s+/g, '-').toLowerCase();
 }

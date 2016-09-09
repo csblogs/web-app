@@ -1,4 +1,4 @@
-/* eslint-env jquery */
+/* eslint-env jquery, browser */
 
 $(document).ready(() => {
   const inputs = $('input[type=text], input[type=email], input[type=url], textarea');

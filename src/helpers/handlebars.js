@@ -51,13 +51,11 @@ export function urlFormat(urlStr) {
 }
 
 export function section(name, options) {
-  /* eslint-disable no-underscore-dangle */
   if (!this._sections) {
     this._sections = {};
   }
   this._sections[name] = options.fn(this);
   return null;
-  /* eslint-enable no-underscore-dangle */
 }
 
 export function add(strNum1, strNum2) {
