@@ -16,7 +16,7 @@
     "build:js": "rm -rf app/ && babel src/ -d app/",
     "build:scss": "node-sass ./src/public/styles --output ./app/public/styles",
     "watch:js": "rm -rf app/ && babel src/ -d app/ -w &",
-    "watch:hbs": "nodemon -w src/views -e handlebars -q --exec \"cp\" -r ./src/views ./app &",
+    "watch:hbs": "nodemon -w src/views -e handlebars -q --exec \"cp -r ./src/views ./app\" &",
     "watch:scss": "npm run build:scss && node-sass ./src/public/styles --output ./app/public/styles -w &",
     "copy:hbs": "rsync -r ./src/views ./app",
     "copy:public": "rsync -r ./src/public ./app --exclude styles --exclude icons && npm run copy:icons",

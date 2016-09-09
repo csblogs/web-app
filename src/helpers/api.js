@@ -1,7 +1,7 @@
 import request from 'request';
 import log from '../log';
 
-const BASE_URL = 'http://localhost:3000/v2.0/';
+const BASE_URL = process.env.API_BASE_URL;
 
 function handleGetResponse(url, resolve, reject, err, res, body) {
   if (err) {
