@@ -1,0 +1,19 @@
+version: '2.0'
+services:
+  csblogs-web-app:
+    build: .
+    command: start-production
+    restart: always
+    ports: 
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - API_BASE_URL=
+      - CSBLOGS_WEB_SESSION_SECRET=
+      - CSBLOGS_GITHUB_CLIENT_ID=
+      - CSBLOGS_GITHUB_CLIENT_SECRET=
+      - CSBLOGS_WORDPRESS_CLIENT_ID=
+      - CSBLOGS_WORDPRESS_CLIENT_SECRET=
+      - CSBLOGS_STACK_EX_CLIENT_ID=
+      - CSBLOGS_STACK_EX_CLIENT_SECRET=
+      - CSBLOGS_STACK_EX_CLIENT_KEY=

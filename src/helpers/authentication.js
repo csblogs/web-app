@@ -5,6 +5,8 @@ import { Strategy as StackExchangeStrategy } from 'passport-stackexchange';
 import log from '../log';
 import * as api from '../helpers/api';
 
+const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
+
 export const passport = _passport;
 
 export function ensureAuthenticated(req, res, next) {
@@ -50,7 +52,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(new GitHubStrategy({
   clientID: process.env.CSBLOGS_GITHUB_CLIENT_ID,
   clientSecret: process.env.CSBLOGS_GITHUB_CLIENT_SECRET,
-  callbackURL: `${process.env.CSBLOGS_BASE_URL}/auth/github/callback`
+  callbackURL: `${BASE_URL}/auth/github/callback`
 },
 (accessToken, refreshToken, profile, done) => {
   authenticateWithAPI('github', accessToken, done);
@@ -60,7 +62,7 @@ passport.use(new GitHubStrategy({
 passport.use(new WordpressStrategy({
   clientID: process.env.CSBLOGS_WORDPRESS_CLIENT_ID,
   clientSecret: process.env.CSBLOGS_WORDPRESS_CLIENT_SECRET,
-  callbackURL: `${process.env.CSBLOGS_BASE_URL}/auth/wordpress/callback`
+  callbackURL: `${BASE_URL}/auth/wordpress/callback`
 },
 (accessToken, refreshToken, profile, done) => {
   authenticateWithAPI('wordpress', accessToken, done);
@@ -71,7 +73,7 @@ passport.use(new StackExchangeStrategy({
   clientID: process.env.CSBLOGS_STACK_EX_CLIENT_ID,
   clientSecret: process.env.CSBLOGS_STACK_EX_CLIENT_SECRET,
   key: process.env.CSBLOGS_STACK_EX_CLIENT_KEY,
-  callbackURL: `${process.env.CSBLOGS_BASE_URL}/auth/stack-exchange/callback`
+  callbackURL: `${BASE_URL}/auth/stack-exchange/callback`
 },
 (accessToken, refreshToken, profile, done) => {
   authenticateWithAPI('stack_exchange', accessToken, done);
