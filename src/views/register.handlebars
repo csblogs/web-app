@@ -6,7 +6,7 @@
 <div id="body-content">
   <img class="avatar" src="{{user.profile_picture_uri}}" alt="Avatar"/>
 
-  <form method="post" action="/{{postAction}}">
+  <form id="profile-form" method="post" action="/{{postAction}}">
     <div class="alert-box alert-info">
       <p>You can update your profile picture by changing it inside the service you log in with.</p>
     </div>
@@ -19,7 +19,7 @@
     </div>
     {{/if}}
     <h2 class="subheader">Your Profile</h2>
-    <div class="row">
+    <div class="clearfix">
       <div class="input-field column">
         <input id="first_name" name="firstName" type="text" value="{{user.first_name}}" {{ifInvalid errors 'firstName'}}>
         <label for="first_name">First Name</label>

@@ -1,15 +1,11 @@
 @import "variables";
 
-main {
-  font-size: 16px;
-}
-
 #body-content {
   margin-top: 24px;
   text-align: center;
 }
 
-main form {
+#profile-form {
   margin: 0 auto;
   margin-bottom: 2em;
   max-width: 400px;
@@ -30,12 +26,6 @@ main form {
   }
 }
 
-.row::after {
-  content: '';
-  clear: both;
-  display: block;
-}
-
 .subheader {
   margin-top: 8px;
   margin-bottom: 20px;
@@ -51,18 +41,16 @@ label {
   color: #858585;
   position: absolute;
   top: 0.6em;
-  // left: 0.75em;
   left: 0;
   font-size: 1em;
   cursor: text;
   transition: 0.2s ease-out;
   user-select: none;
-}
 
-label.active {
-  // font-size: 0.8em;
-  transform: translateY(-130%) scale(0.82);
-  transform-origin: left top;
+  &.active {
+    transform: translateY(-130%) scale(0.82);
+    transform-origin: left top;
+  }
 }
 
 input:not([type=submit]):focus + label,
@@ -96,7 +84,6 @@ textarea {
   border-bottom: 1px solid #858585;
   color: #000;
   outline: none;
-  line-height: 1.2em;
   height: 2.4em;
   width: 100%;
   font-size: 1em;
@@ -104,10 +91,7 @@ textarea {
   padding: 0;
   box-shadow: none;
   box-sizing: content-box;
-}
-
-input:not([type=submit]) {
-  transition: 0.3s;
+  transition: box-shadow 0.3s;
 }
 
 input:not([type=submit]):focus,
@@ -117,7 +101,6 @@ textarea:focus {
 }
 
 textarea {
-  // height: 1.5em;
   overflow: hidden;
   padding-top: 0.6em;
   padding-bottom: 0.6em;

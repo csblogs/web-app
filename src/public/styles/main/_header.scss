@@ -65,7 +65,6 @@
   transition: background 0.4s ease-out;
   background: rgba(0, 0, 0, 0.18);
   border-radius: 6px;
-  padding: 7px 16px;
   margin-left: 13px;
   margin-top: -7px;
 
@@ -74,6 +73,8 @@
   }
 
   a {
+    display: block;
+    padding: 7px 16px;
     color: #fff;
   }
 }
@@ -128,9 +129,9 @@
     background: none;
     transition: none;
     margin: 0;
-    padding: 0;
 
     a {
+      padding: 0;
       color: rgba(255, 255, 255, 0.8);
     }
 
