@@ -71,6 +71,7 @@
     "stylelint-config-standard": "^13.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bunyan": "^1.8.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",

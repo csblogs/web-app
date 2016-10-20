@@ -3,14 +3,14 @@ import * as api from '../helpers/api';
 export const PAGE_SIZE = 10;
 
 export function getAllPosts(pageNumber) {
-  return api.get('posts', {
+  return api.get('post', {
     page: pageNumber - 1,
     page_size: PAGE_SIZE
   });
 }
 
 export function getBloggerPosts(bloggerId, pageNumber) {
-  return api.get('posts', {
+  return api.get('post', {
     author_id: bloggerId,
     page: pageNumber - 1,
     page_size: PAGE_SIZE
@@ -24,7 +24,7 @@ export function getPostAuthors(posts) {
   // Stringify as CSV
   const idsParams = ids.join(',');
 
-  return api.get('users', {
+  return api.get('user', {
     ids: idsParams
   })
   .then(users => {

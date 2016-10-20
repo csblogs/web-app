@@ -1,4 +1,5 @@
 import express from 'express';
+import log from '../log';
 import * as bloggerController from '../controllers/blogger-controller';
 import * as blogController from '../controllers/blog-controller';
 import { ensureAuthenticated } from '../helpers/authentication';
@@ -16,17 +17,34 @@ function setAvatarCookie(res, blogger) {
 }
 /* eslint-enable no-param-reassign */
 
-router.get('/register', (req, res) => {
-  if (req.user && !req.cookies.user_token) {
-    res.render('register', {
-      title: 'Register',
-      submitText: 'Add your blog',
-      postAction: 'register',
-      user: req.user
+router.route('/register')
+.get((req, res) => {
+  // if (req.user && !req.cookies.user_token) {
+  //   res.render('register', {
+  //     title: 'Register',
+  //     submitText: 'Add your blog',
+  //     postAction: 'register',
+  //     user: req.user
+  //   });
+  // } else {
+  //   res.redirect('/login');
+  // }
+  res.render('register', {
+    title: 'Register',
+    submitText: 'Add your blog',
+    postAction: 'register',
+    user: req.user
+  });
+})
+.post((req, res, next) => {
+  bloggerController.registerUser(req.body)
+    .then(body => {
+      log.info(body);
+    })
+    .catch(err => {
+      log.info(err);
+      next(err);
     });
-  } else {
-    res.redirect('/login');
-  }
 });
 
 router.get('/login', (req, res) => {
