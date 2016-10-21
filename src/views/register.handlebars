@@ -21,35 +21,35 @@
     <h2 class="subheader">Your Profile</h2>
     <div class="clearfix">
       <div class="input-field column">
-        <input id="first_name" name="firstName" type="text" value="{{user.first_name}}" {{{ifInvalid errors 'firstName'}}}>
+        <input id="first_name" name="firstName" type="text" value="{{user.first_name}}" required {{{ifInvalid errors 'firstName'}}}>
         <label for="first_name">First Name</label>
       </div>
       <div class="input-field column">
-        <input id="last_name" name="lastName" type="text" value="{{user.last_name}}" {{{ifInvalid errors 'lastName'}}}>
+        <input id="last_name" name="lastName" type="text" value="{{user.last_name}}" required {{{ifInvalid errors 'lastName'}}}>
         <label for="last_name">Last Name</label>
       </div>
     </div>
     <div class="input-field">
-      <input id="email" name="emailAddress" type="email" value="{{user.email_address}}" {{{ifInvalid errors 'emailAddress'}}}>
+      <input id="email" name="emailAddress" type="email" value="{{user.email_address}}" required {{{ifInvalid errors 'emailAddress'}}}>
       <label for="email">Email Address</label>
     </div>
     <div class="input-field">
-      <textarea id="bio" name="bio" maxlength="350" autoresize {{{ifInvalid errors 'bio'}}}>{{user.bio}}</textarea>
+      <textarea id="bio" name="bio" maxlength="350" autoresize required {{{ifInvalid errors 'bio'}}}>{{user.bio}}</textarea>
       <label for="bio">About You</label>
     </div>
     <p id="bio-desc">A short bio about yourself, up to 350 characters.</p>
     <div class="input-field">
-      <input id="vanity_url" name="vanityName" type="text" value="{{user.vanity_name}}" {{{ifInvalid errors 'vanityName'}}}>
+      <input id="vanity_url" name="vanityName" type="text" value="{{user.vanity_name}}" required {{{ifInvalid errors 'vanityName'}}}>
       <label for="vanity_url">Profile Name</label>
     </div>
     <p>This will be used in your profile URL (e.g. csblogs.com/yourname)</p>
     <h2 class="subheader">Your Content</h2>
     <div class="input-field">
-      <input id="feed_url" name="blogFeedURI" type="url" value="{{user.blog_feed_uri}}" {{{ifInvalid errors 'blogFeedURI'}}}>
+      <input id="feed_url" name="blogFeedURI" type="url" value="{{user.blog_feed_uri}}" required {{{ifInvalid errors 'blogFeedURI'}}}>
       <label for="feed_url">Blog Feed URL</label>
     </div>
     <div class="input-field">
-      <input id="blog_url" name="blogURI" type="url" value="{{user.blog_uri}}" {{{ifInvalid errors 'blogURI'}}}>
+      <input id="blog_url" name="blogURI" type="url" value="{{user.blog_uri}}" required {{{ifInvalid errors 'blogURI'}}}>
       <label for="blog_url">Blog Website URL</label>
     </div>
     <div class="input-field">
