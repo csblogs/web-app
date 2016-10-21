@@ -38,11 +38,20 @@ router.route('/register')
 })
 .post((req, res, next) => {
   bloggerController.registerUser(req.body)
-    .then(body => {
-      log.info(body);
+    .then(data => {
+      if (data.status === 201) {
+        log.info(data);
+      } else {
+        res.render('register', {
+          title: 'Register',
+          submitText: 'Add your blog',
+          postAction: 'register',
+          errors: data.errors,
+          user: req.user
+        });
+      }
     })
     .catch(err => {
-      log.info(err);
       next(err);
     });
 });

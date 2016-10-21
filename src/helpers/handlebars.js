@@ -73,12 +73,13 @@ export function svg(name) {
 }
 
 export function ifInvalid(errors, name) {
-  if (errors) {
-    for (let i = 0; i < errors.length; ++i) {
-      if (errors[i].parameter === name) {
-        return 'class="invalid"';
-      }
-    }
+  if (errors && errors[name]) {
+    // for (let i = 0; i < errors.length; ++i) {
+    //   if (errors[i].parameter === name) {
+    //     return 'class="invalid"';
+    //   }
+    // }
+    return 'class="invalid"';
   }
   return '';
 }

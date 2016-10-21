@@ -20,6 +20,17 @@ function handleGetResponse(url, resolve, reject, err, res, body) {
   return resolve(body);
 }
 
+function handlePostResponse(url, resolve, reject, err, res, body) {
+  if (err) {
+    log.error({ url, err }, 'Error from API request');
+    return reject(err);
+  }
+  const data = body;
+  data.status = res.statusCode;
+
+  return resolve(data);
+}
+
 export function get(url, params, auth) {
   return new Promise((resolve, reject) => {
     request.get({
@@ -60,7 +71,7 @@ export function post(url, data) {
       json: true
     },
     (err, res, body) =>
-      handleGetResponse(url, resolve, reject, err, res, body)
+      handlePostResponse(url, resolve, reject, err, res, body)
     );
   });
 }
