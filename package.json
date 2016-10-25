@@ -26,7 +26,7 @@
     "lint:js": "eslint .",
     "lint:scss": "stylelint \"**/*.scss\" --syntax scss",
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
-    "deploy": "now --public --docker -e PORT=\"80\" -e API_BASE_URL=@csb-api-url -e CSBLOGS_WEB_SESSION_SECRET=@csb-sess-secret -e CSBLOGS_GITHUB_CLIENT_ID=@csb-github-id -e CSBLOGS_GITHUB_CLIENT_SECRET=@csb-github-secret -e CSBLOGS_WORDPRESS_CLIENT_ID=@csb-wp-id -e CSBLOGS_WORDPRESS_CLIENT_SECRET=@csb-wp-secret -e CSBLOGS_STACK_EX_CLIENT_ID=@csb-stackex-id -e CSBLOGS_STACK_EX_CLIENT_SECRET=@csb-stackex-secret -e CSBLOGS_STACK_EX_CLIENT_KEY=@csb-stackex-key",
+    "deploy": "now --public --docker -e PORT=\"80\" -e API_BASE_URL=@csb-api-url -e CSBLOGS_WEB_SESSION_SECRET=@csb-sess-secret -e CSBLOGS_GITHUB_CLIENT_ID=@csb-github-id -e CSBLOGS_GITHUB_CLIENT_SECRET=@csb-github-secret -e CSBLOGS_WORDPRESS_CLIENT_ID=@csb-wp-id -e CSBLOGS_WORDPRESS_CLIENT_SECRET=@csb-wp-secret -e CSBLOGS_STACK_EX_CLIENT_ID=@csb-stackex-id -e CSBLOGS_STACK_EX_CLIENT_SECRET=@csb-stackex-secret -e CSBLOGS_STACK_EX_CLIENT_KEY=@csb-stackex-key -e NODE_ENV=production",
     "travis-ci": "npm run test && npm run lint"
   },
   "pre-commit": [

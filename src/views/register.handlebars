@@ -4,7 +4,7 @@
 {{/section}}
 
 <div id="body-content">
-  <img class="avatar" src="{{user.profile_picture_uri}}" alt="Avatar"/>
+  <img class="avatar" src="{{user.profilePictureURI}}" alt="Avatar"/>
 
   <form id="profile-form" method="post" action="{{postAction}}">
     <div class="alert-box alert-info">
@@ -21,16 +21,16 @@
     <h2 class="subheader">Your Profile</h2>
     <div class="clearfix">
       <div class="input-field column">
-        <input id="first_name" name="firstName" type="text" value="{{user.first_name}}" required {{{ifInvalid errors 'firstName'}}}>
+        <input id="first_name" name="firstName" type="text" value="{{user.firstName}}" required {{{ifInvalid errors 'firstName'}}}>
         <label for="first_name">First Name</label>
       </div>
       <div class="input-field column">
-        <input id="last_name" name="lastName" type="text" value="{{user.last_name}}" required {{{ifInvalid errors 'lastName'}}}>
+        <input id="last_name" name="lastName" type="text" value="{{user.lastName}}" required {{{ifInvalid errors 'lastName'}}}>
         <label for="last_name">Last Name</label>
       </div>
     </div>
     <div class="input-field">
-      <input id="email" name="emailAddress" type="email" value="{{user.email_address}}" required {{{ifInvalid errors 'emailAddress'}}}>
+      <input id="email" name="emailAddress" type="email" value="{{user.emailAddress}}" required {{{ifInvalid errors 'emailAddress'}}}>
       <label for="email">Email Address</label>
     </div>
     <div class="input-field">
@@ -39,38 +39,38 @@
     </div>
     <p id="bio-desc">A short bio about yourself, up to 350 characters.</p>
     <div class="input-field">
-      <input id="vanity_url" name="vanityName" type="text" value="{{user.vanity_name}}" required {{{ifInvalid errors 'vanityName'}}}>
+      <input id="vanity_url" name="vanityName" type="text" value="{{user.vanityName}}" required {{{ifInvalid errors 'vanityName'}}}>
       <label for="vanity_url">Profile Name</label>
     </div>
     <p>This will be used in your profile URL (e.g. csblogs.com/yourname)</p>
     <h2 class="subheader">Your Content</h2>
     <div class="input-field">
-      <input id="feed_url" name="blogFeedURI" type="url" value="{{user.blog_feed_uri}}" required {{{ifInvalid errors 'blogFeedURI'}}}>
+      <input id="feed_url" name="blogFeedURI" type="url" value="{{user.blogFeedURI}}" required {{{ifInvalid errors 'blogFeedURI'}}}>
       <label for="feed_url">Blog Feed URL</label>
     </div>
     <div class="input-field">
-      <input id="blog_url" name="blogURI" type="url" value="{{user.blog_uri}}" required {{{ifInvalid errors 'blogURI'}}}>
+      <input id="blog_url" name="blogURI" type="url" value="{{user.blogURI}}" required {{{ifInvalid errors 'blogURI'}}}>
       <label for="blog_url">Blog Website URL</label>
     </div>
     <div class="input-field">
-      <input id="site_url" name="websiteURI" type="url" value="{{user.website_uri}}" {{{ifInvalid errors 'websiteURI'}}}>
+      <input id="site_url" name="websiteURI" type="url" value="{{user.websiteURI}}" {{{ifInvalid errors 'websiteURI'}}}>
       <label for="site_url">Website URL</label>
     </div>
     <div class="input-field">
-      <input id="cv_url" name="cvURI" type="url" value="{{user.cv_uri}}" {{{ifInvalid errors 'cvURI'}}}>
+      <input id="cv_url" name="cvURI" type="url" value="{{user.cvURI}}" {{{ifInvalid errors 'cvURI'}}}>
       <label for="cv_url">Curriculum Vitae URL</label>
     </div>
     <h2 class="subheader">Social Links</h2>
     <div class="input-field">
-      <input id="github_name" name="githubUsername" type="text" value="{{user.github_username}}" {{{ifInvalid errors 'githubUsername'}}}>
+      <input id="github_name" name="githubUsername" type="text" value="{{user.githubUsername}}" {{{ifInvalid errors 'githubUsername'}}}>
       <label for="github_name">GitHub Name</label>
     </div>
     <div class="input-field">
-      <input id="twitter_name" name="twitterUsername" type="text" value="{{user.twitter_username}}" {{{ifInvalid errors 'twitterUsername'}}}>
+      <input id="twitter_name" name="twitterUsername" type="text" value="{{user.twitterUsername}}" {{{ifInvalid errors 'twitterUsername'}}}>
       <label for="twitter_name">Twitter Name</label>
     </div>
     <div class="input-field">
-      <input id="linkedIn_name" name="linkedInURI" type="text" value="{{user.linkedin_uri}}" {{{ifInvalid errors 'linkedInURI'}}}>
+      <input id="linkedIn_name" name="linkedInURI" type="text" value="{{user.linkedInURI}}" {{{ifInvalid errors 'linkedInURI'}}}>
       <label for="linkedIn_name">LinkedIn Name</label>
     </div>
     {{#unless user.validated}}

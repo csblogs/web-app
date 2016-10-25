@@ -40,12 +40,12 @@ function normalizeUser(passportUser) {
       const avatarUrl = new URI(passportUser._json.avatar_url).removeSearch('v');
 
       userAsBlogger = {
-        profile_picture_uri: avatarUrl.toString(),
-        email_address: passportUser._json.email,
-        website_uri: passportUser._json.blog,
-        github_username: passportUser._json.login,
+        profilePictureURI: avatarUrl.toString(),
+        emailAddress: passportUser._json.email,
+        blogURI: passportUser._json.blog,
+        githubUsername: passportUser._json.login,
         bio: passportUser._json.bio,
-        vanity_name: normalizeVanityName(passportUser.username)
+        vanityName: normalizeVanityName(passportUser.username)
       };
 
       log.info(userAsBlogger, 'blogger');
@@ -64,19 +64,19 @@ function normalizeUser(passportUser) {
     }
     case 'Wordpress': {
       userAsBlogger = {
-        profile_picture_uri: passportUser._json.avatar_URL,
+        profilePictureURI: passportUser._json.avatar_URL,
         email_address: passportUser._json.email,
-        blog_feed_uri: `http://${passportUser.displayName}.wordpress.com/feed`,
-        website_uri: `http://${passportUser.displayName}.wordpress.com`,
-        vanity_name: normalizeVanityName(passportUser._json.display_name)
+        blogFeedURI: `http://${passportUser.displayName}.wordpress.com/feed`,
+        blogURI: `http://${passportUser.displayName}.wordpress.com`,
+        vanityName: normalizeVanityName(passportUser._json.display_name)
       };
       break;
     }
     case 'stackexchange': {
       userAsBlogger = {
-        profile_picture_uri: passportUser.profile_image,
-        vanity_name: normalizeVanityName(passportUser.display_name),
-        website_uri: passportUser.website_url
+        profilePictureURI: passportUser.profile_image,
+        vanityName: normalizeVanityName(passportUser.display_name),
+        blogURI: passportUser.website_url
       };
       break;
     }

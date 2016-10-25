@@ -47,7 +47,7 @@ router.route('/register')
           submitText: 'Add your blog',
           postAction: 'register',
           errors: data.errors,
-          user: req.user
+          user: req.body
         });
       }
     })
