@@ -37,7 +37,10 @@ router.route('/register')
   });
 })
 .post((req, res, next) => {
-  bloggerController.registerUser(req.body)
+  const user = req.body;
+  user.profilePictureURI = req.user.profilePictureURI;
+
+  bloggerController.registerUser(user)
     .then(data => {
       if (data.status === 201) {
         log.info(data);
@@ -47,7 +50,7 @@ router.route('/register')
           submitText: 'Add your blog',
           postAction: 'register',
           errors: data.errors,
-          user: req.body
+          user
         });
       }
     })

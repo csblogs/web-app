@@ -54,10 +54,10 @@ function normalizeUser(passportUser) {
       if (passportUser.displayName) {
         if (passportUser.displayName.includes(' ')) {
           const name = passportUser.displayName.split(' ');
-          userAsBlogger.first_name = name.shift();
-          userAsBlogger.last_name = name.join(' ');
+          userAsBlogger.firstName = name.shift();
+          userAsBlogger.lastName = name.join(' ');
         } else {
-          userAsBlogger.first_name = passportUser.displayName;
+          userAsBlogger.firstName = passportUser.displayName;
         }
       }
       break;
@@ -65,7 +65,7 @@ function normalizeUser(passportUser) {
     case 'Wordpress': {
       userAsBlogger = {
         profilePictureURI: passportUser._json.avatar_URL,
-        email_address: passportUser._json.email,
+        emailAddress: passportUser._json.email,
         blogFeedURI: `http://${passportUser.displayName}.wordpress.com/feed`,
         blogURI: `http://${passportUser.displayName}.wordpress.com`,
         vanityName: normalizeVanityName(passportUser._json.display_name)
@@ -120,7 +120,8 @@ passport.use(new GitHubStrategy({
   callbackURL: `${BASE_URL}/auth/github/callback`
 },
 (accessToken, refreshToken, profile, done) => {
-  authenticateWithAPI('github', accessToken, profile, done);
+  // authenticateWithAPI('github', accessToken, profile, done);
+  done(null, normalizeUser(profile));
 }));
 
 // WordPress auth

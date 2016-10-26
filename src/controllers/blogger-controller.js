@@ -48,8 +48,6 @@ export function getLoggedInBlogger(token) {
 }
 
 export function registerUser(user) {
-  user.profilePictureURI = 'http://image.com/'; // eslint-disable-line no-param-reassign
-
   return api.post('user', user)
     .then(data => {
       if (data.status === 201) {
