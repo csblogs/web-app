@@ -20,8 +20,11 @@ const fieldMap = {
 
 function assignFriendlyFieldNames(fields) {
   const friendlyFields = {};
+  const keys = Object.keys(fields);
 
-  for (const key of Object.keys(fields)) {
+  for (let i = 0; i < keys.length; ++i) {
+    const key = keys[i];
+
     friendlyFields[key] = {};
     friendlyFields[key].name = fieldMap[key];
     friendlyFields[key].message = fields[key];
