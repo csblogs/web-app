@@ -78,7 +78,7 @@ export function post(url, data) {
 
 export function postAuth(url, data, token) {
   return new Promise((resolve, reject) => {
-    request.get({
+    request.post({
       baseUrl: BASE_URL,
       url,
       headers: {
@@ -88,7 +88,7 @@ export function postAuth(url, data, token) {
       json: true
     },
     (err, res, body) =>
-      handleGetResponse(url, resolve, reject, err, res, body)
+      handlePostResponse(url, resolve, reject, err, res, body)
     );
   });
 }

@@ -42,11 +42,13 @@ router.get('/:vanity_name', (req, res, next) => {
         .then(posts => {
           const hasMore = posts.length === blogController.PAGE_SIZE;
           const hasLess = pageNumber > 1;
+          const displayUrl = blogger.website_uri || blogger.blog_uri;
 
           res.render('profile', {
             title: `${blogger.first_name} ${blogger.last_name}`,
             blogger,
             posts,
+            displayUrl,
             pageNumber,
             hasMore,
             hasLess
