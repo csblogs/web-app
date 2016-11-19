@@ -1,5 +1,5 @@
 import express from 'express';
-import log from '../log';
+// import log from '../log';
 import { passport } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -15,7 +15,6 @@ router.get('/:provider/callback', (req, res, next) => {
   })(req, res, next);
 },
 (req, res) => {
-  log.info(req.user, 'reached here');
   if (req.user) {
     if (req.user.token) {
       res.cookie('user_token', req.user.token, {

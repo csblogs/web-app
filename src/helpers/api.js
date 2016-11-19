@@ -75,3 +75,20 @@ export function post(url, data) {
     );
   });
 }
+
+export function postAuth(url, data, token) {
+  return new Promise((resolve, reject) => {
+    request.get({
+      baseUrl: BASE_URL,
+      url,
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data,
+      json: true
+    },
+    (err, res, body) =>
+      handleGetResponse(url, resolve, reject, err, res, body)
+    );
+  });
+}

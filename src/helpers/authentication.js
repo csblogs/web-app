@@ -31,7 +31,7 @@ function normalizeVanityName(name) {
   return name.replace(/\s+/g, '-').toLowerCase();
 }
 
-function normalizeUser(passportUser) {
+function normalizeUser(passportUser, apiToken) {
   let userAsBlogger = null;
 
   switch (passportUser.provider) {
@@ -87,18 +87,24 @@ function normalizeUser(passportUser) {
       throw err;
     }
   }
+
+  if (userAsBlogger) {
+    userAsBlogger.apiToken = apiToken;
+  }
+
   return userAsBlogger;
 }
 
 function authenticateWithAPI(service, accessToken, profile, done) {
-  api.get('authentication/token', null, {
-    username: service,
-    password: accessToken
+  api.post('token', {
+    authenticationProvider: service,
+    accessToken
+    // accessAppKey
   })
   .then(res => {
     log.info(res, 'User authenticated with API');
     // done(null, res);
-    done(null, normalizeUser(profile));
+    done(null, normalizeUser(profile, res.csbToken));
   })
   .catch(err => {
     done(err);
@@ -120,8 +126,7 @@ passport.use(new GitHubStrategy({
   callbackURL: `${BASE_URL}/auth/github/callback`
 },
 (accessToken, refreshToken, profile, done) => {
-  // authenticateWithAPI('github', accessToken, profile, done);
-  done(null, normalizeUser(profile));
+  authenticateWithAPI('github', accessToken, profile, done);
 }));
 
 // WordPress auth

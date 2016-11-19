@@ -50,8 +50,8 @@ export function getLoggedInBlogger(token) {
   return api.getAuth('user/me', token);
 }
 
-export function registerUser(user) {
-  return api.post('user', user)
+export function registerUser(user, token) {
+  return api.postAuth('user', user, token)
     .then(data => {
       if (data.status === 201) {
         return data;
