@@ -1,0 +1,5 @@
+{{#if website_uri}}
+<a class="site-link" href="{{website_uri}}" itemprop="url">{{urlFormat website_uri}}</a>
+{{else}}
+<a class="site-link" href="{{blog_uri}}" itemprop="url">{{urlFormat blog_uri}}</a>
+{{/if}}

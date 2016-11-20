@@ -44,7 +44,7 @@ main {
   font-weight: 400;
 }
 
-#profile-site {
+.site-link {
   display: inline-block;
   position: relative;
   margin-left: 2px;
@@ -54,11 +54,11 @@ main {
   font-size: 20px;
 }
 
-#profile-site:hover {
+.site-link:hover {
   color: #fff;
 }
 
-#profile-site:hover::after {
+.site-link:hover::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -209,7 +209,7 @@ main hr {
     text-align: center;
   }
 
-  #profile-site {
+  .profile-site {
     margin-left: 0;
     margin-top: 10px;
   }

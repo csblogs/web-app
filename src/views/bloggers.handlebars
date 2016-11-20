@@ -18,7 +18,7 @@
       <span itemprop="givenName">{{first_name}}</span>
       <span itemprop="familyName">{{last_name}}</span>
     </h2>
-    <a class="site-link" href="{{website_uri}}" itemprop="url">{{urlFormat website_uri}}</a>
+    {{> display-site}}
   </li>
   {{/each}}
 </ul>

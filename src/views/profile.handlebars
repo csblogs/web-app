@@ -24,7 +24,7 @@
           <span itemprop="givenName">{{blogger.first_name}}</span>
           <span itemprop="familyName">{{blogger.last_name}}</span>
         </h2>
-        <a id="profile-site" href="{{displayUrl}}" itemprop="url">{{urlFormat displayUrl}}</a>
+        {{> display-site blogger}}
       </div>
       {{#if loggedIn}}
       <a id="edit-profile-btn" class="button" href="/account">
