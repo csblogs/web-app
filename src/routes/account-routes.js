@@ -19,7 +19,8 @@ function setAvatarCookie(res, blogger) {
 
 router.route('/register')
 .get((req, res) => {
-  if (req.user && !req.cookies.user_token) {
+  // if (req.user && req.user.iRegistered && req.cookies.user_token) {
+  if (req.user && req.cookies.user_token) {
     res.render('register', {
       title: 'Register',
       submitText: 'Add your blog',
@@ -29,25 +30,16 @@ router.route('/register')
   } else {
     res.redirect('/login');
   }
-  // res.render('register', {
-  //   title: 'Register',
-  //   submitText: 'Add your blog',
-  //   postAction: 'register',
-  //   user: req.user
-  // });
 })
 .post((req, res, next) => {
   const user = req.body;
   user.profilePictureURI = req.user.profilePictureURI;
 
-  log.info(user, 'form');
-  log.info(req.user, 'user');
-
   bloggerController.registerUser(user, req.user.apiToken)
     .then(data => {
       if (data.status === 201) {
         log.info(data, 'SUCCESSFULLY REGISTERED');
-        res.redirect('/');
+        res.redirect('/profile');
       } else {
         res.render('register', {
           title: 'Register',

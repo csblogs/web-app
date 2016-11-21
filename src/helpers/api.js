@@ -1,20 +1,17 @@
 import request from 'request';
-import log from '../log';
 
 const BASE_URL = `${process.env.API_BASE_URL}/v2.0/`;
+const API_ERROR_MESSAGE = 'Unexpected error from API request';
 
 function handleGetResponse(url, resolve, reject, err, res, body) {
   if (err) {
-    log.error({ url, err }, 'Error from API request');
     return reject(err);
   } else if (res.statusCode !== 200) {
     // Try to get error from JSON response
-    const errorMessage = body.error || `Unexpected status code: ${res.statusCode}`;
+    const errorMessage = body.error || API_ERROR_MESSAGE;
     const error = new Error(errorMessage);
-
     error.status = res.statusCode;
 
-    log.error({ url, res }, errorMessage);
     return reject(error);
   }
   return resolve(body);
@@ -22,7 +19,6 @@ function handleGetResponse(url, resolve, reject, err, res, body) {
 
 function handlePostResponse(url, resolve, reject, err, res, body) {
   if (err) {
-    log.error({ url, err }, 'Error from API request');
     return reject(err);
   }
   const data = body;
@@ -31,12 +27,11 @@ function handlePostResponse(url, resolve, reject, err, res, body) {
   return resolve(data);
 }
 
-export function get(url, params, auth) {
+export function get(url, params) {
   return new Promise((resolve, reject) => {
     request.get({
       baseUrl: BASE_URL,
       url,
-      auth,
       qs: params,
       json: true
     },
@@ -52,7 +47,7 @@ export function getAuth(url, token) {
       baseUrl: BASE_URL,
       url,
       headers: {
-        Authorization: token
+        Authorization: `JWT ${token}`
       },
       json: true
     },

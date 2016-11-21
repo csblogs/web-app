@@ -16,11 +16,12 @@ router.get('/:provider/callback', (req, res, next) => {
 },
 (req, res) => {
   if (req.user) {
-    if (req.user.token) {
-      res.cookie('user_token', req.user.token, {
-        httpOnly: true,
-        secure: isProduction
-      });
+    res.cookie('user_token', req.user.apiToken, {
+      httpOnly: true,
+      secure: isProduction
+    });
+
+    if (!req.user.isRegistered) {
       res.redirect('/profile');
     } else {
       res.redirect('/register');
