@@ -31,7 +31,7 @@ function normalizeVanityName(name) {
   return name.replace(/\s+/g, '-').toLowerCase();
 }
 
-function normalizeUser(passportUser, apiToken) {
+function normalizeUser(passportUser, authDetails) {
   let userAsBlogger = null;
 
   switch (passportUser.provider) {
@@ -48,7 +48,7 @@ function normalizeUser(passportUser, apiToken) {
         vanityName: normalizeVanityName(passportUser.username)
       };
 
-      log.info(userAsBlogger, 'blogger');
+      log.info(userAsBlogger, 'GitHub blogger');
 
       // Check displayName for first/last name combinations
       if (passportUser.displayName) {
@@ -89,7 +89,8 @@ function normalizeUser(passportUser, apiToken) {
   }
 
   if (userAsBlogger) {
-    userAsBlogger.apiToken = apiToken;
+    userAsBlogger.apiToken = authDetails.csbToken;
+    userAsBlogger.isRegistered = authDetails.isRegistered;
   }
 
   return userAsBlogger;
@@ -104,7 +105,7 @@ function authenticateWithAPI(service, accessToken, profile, done) {
   .then(res => {
     log.info(res, 'User authenticated with API');
     // done(null, res);
-    done(null, normalizeUser(profile, res.csbToken));
+    done(null, normalizeUser(profile, res));
   })
   .catch(err => {
     done(err);

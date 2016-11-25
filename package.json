@@ -26,7 +26,7 @@
     "lint:js": "eslint --format=node_modules/eslint-codeframe-formatter .",
     "lint:scss": "stylelint \"**/*.scss\" --syntax scss",
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --require tests/chai-config.js --recursive ./tests/**/*.tests.js",
-    "deploy": "now --public --docker -e PORT=\"80\" -e API_BASE_URL=@csb-api-url -e CSBLOGS_WEB_SESSION_SECRET=@csb-sess-secret -e CSBLOGS_GITHUB_CLIENT_ID=@csb-github-id -e CSBLOGS_GITHUB_CLIENT_SECRET=@csb-github-secret -e CSBLOGS_WORDPRESS_CLIENT_ID=@csb-wp-id -e CSBLOGS_WORDPRESS_CLIENT_SECRET=@csb-wp-secret -e CSBLOGS_STACK_EX_CLIENT_ID=@csb-stackex-id -e CSBLOGS_STACK_EX_CLIENT_SECRET=@csb-stackex-secret -e CSBLOGS_STACK_EX_CLIENT_KEY=@csb-stackex-key -e NODE_ENV=production",
+    "deploy": "now --public --docker -e PORT=80 -e API_BASE_URL=@csb-api-url -e CSBLOGS_WEB_SESSION_SECRET=@csb-sess-secret -e CSBLOGS_GITHUB_CLIENT_ID=@csb-github-id -e CSBLOGS_GITHUB_CLIENT_SECRET=@csb-github-secret -e CSBLOGS_WORDPRESS_CLIENT_ID=@csb-wp-id -e CSBLOGS_WORDPRESS_CLIENT_SECRET=@csb-wp-secret -e CSBLOGS_STACK_EX_CLIENT_ID=@csb-stackex-id -e CSBLOGS_STACK_EX_CLIENT_SECRET=@csb-stackex-secret -e CSBLOGS_STACK_EX_CLIENT_KEY=@csb-stackex-key -e NODE_ENV=production",
     "travis-ci": "npm run test && npm run lint"
   },
   "pre-commit": [
@@ -65,7 +65,7 @@
     "mocha": "^3.1.2",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",
-    "now": "^0.28.1",
+    "now": "^0.30.0",
     "postcss-cli": "^2.6.0",
     "pre-commit": "^1.1.3",
     "stylelint": "^7.6.0",
@@ -82,13 +82,13 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
     "helmet": "^3.1.0",
-    "moment": "^2.16.0",
+    "moment": "^2.17.0",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
     "passport-stackexchange": "^0.1.2",
     "passport-wordpress": "0.0.4",
     "request": "^2.79.0",
-    "serialize-error": "^2.0.0",
+    "serialize-error": "^2.1.0",
     "urijs": "^1.18.3"
   }
 }

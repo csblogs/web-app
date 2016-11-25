@@ -21,7 +21,7 @@ router.get('/:provider/callback', (req, res, next) => {
       secure: isProduction
     });
 
-    if (!req.user.isRegistered) {
+    if (req.user.isRegistered) {
       res.redirect('/profile');
     } else {
       res.redirect('/register');
