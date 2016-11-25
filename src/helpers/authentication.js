@@ -99,8 +99,8 @@ function normalizeUser(passportUser, authDetails) {
 function authenticateWithAPI(service, accessToken, profile, done) {
   api.post('token', {
     authenticationProvider: service,
-    accessToken
-    // accessAppKey
+    accessToken,
+    accessAppKey: process.env.CSBLOGS_STACK_EX_CLIENT_KEY
   })
   .then(res => {
     log.info(res, 'User authenticated with API');
