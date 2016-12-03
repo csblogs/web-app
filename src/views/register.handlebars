@@ -1,0 +1,91 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="{{asset '/styles/register.css' 0}}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+{{/section}}
+
+<div id="body-content">
+  <img class="avatar" src="{{user.profilePictureURI}}" alt="Avatar"/>
+
+  <form id="profile-form" method="post" action="{{postAction}}">
+    <div class="alert-box alert-info">
+      <p>You can update your profile picture by changing it inside the service you log in with.</p>
+    </div>
+    {{#if errors}}
+    <div class="alert-box alert-error">
+      <p>Please address the following errors before trying again:</p>
+      {{#each errors}}
+      <p>- {{name}}: {{message}}</p>
+      {{/each}}
+    </div>
+    {{/if}}
+    <h2 class="subheader">Your Profile</h2>
+    <div class="clearfix">
+      <div class="input-field column">
+        <input id="first_name" name="firstName" type="text" value="{{user.firstName}}" required {{{ifInvalid errors 'firstName'}}}>
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field column">
+        <input id="last_name" name="lastName" type="text" value="{{user.lastName}}" required {{{ifInvalid errors 'lastName'}}}>
+        <label for="last_name">Last Name</label>
+      </div>
+    </div>
+    <div class="input-field">
+      <input id="email" name="emailAddress" type="email" value="{{user.emailAddress}}" required {{{ifInvalid errors 'emailAddress'}}}>
+      <label for="email">Email Address</label>
+    </div>
+    <div class="input-field">
+      <textarea id="bio" name="bio" maxlength="350" autoresize required {{{ifInvalid errors 'bio'}}}>{{user.bio}}</textarea>
+      <label for="bio">About You</label>
+    </div>
+    <p id="bio-desc">A short bio about yourself, up to 350 characters.</p>
+    <div class="input-field">
+      <input id="vanity_url" name="vanityName" type="text" value="{{user.vanityName}}" required {{{ifInvalid errors 'vanityName'}}}>
+      <label for="vanity_url">Profile Name</label>
+    </div>
+    <p>This will be used in your profile URL (e.g. csblogs.com/yourname)</p>
+    <p>Between 4 and 15 characters.</p>
+    <h2 class="subheader">Your Content</h2>
+    <div class="input-field">
+      <input id="feed_url" name="blogFeedURI" type="url" value="{{user.blogFeedURI}}" required {{{ifInvalid errors 'blogFeedURI'}}}>
+      <label for="feed_url">Blog Feed URL</label>
+    </div>
+    <div class="input-field">
+      <input id="blog_url" name="blogURI" type="url" value="{{user.blogURI}}" required {{{ifInvalid errors 'blogURI'}}}>
+      <label for="blog_url">Blog Website URL</label>
+    </div>
+    <div class="input-field">
+      <input id="site_url" name="websiteURI" type="url" value="{{user.websiteURI}}" {{{ifInvalid errors 'websiteURI'}}}>
+      <label for="site_url">Website URL</label>
+    </div>
+    <div class="input-field">
+      <input id="cv_url" name="cvURI" type="url" value="{{user.cvURI}}" {{{ifInvalid errors 'cvURI'}}}>
+      <label for="cv_url">Curriculum Vitae URL</label>
+    </div>
+    <h2 class="subheader">Social Links</h2>
+    <div class="input-field">
+      <input id="github_name" name="githubUsername" type="text" value="{{user.githubUsername}}" {{{ifInvalid errors 'githubUsername'}}}>
+      <label for="github_name">GitHub Name</label>
+    </div>
+    <div class="input-field">
+      <input id="twitter_name" name="twitterUsername" type="text" value="{{user.twitterUsername}}" {{{ifInvalid errors 'twitterUsername'}}}>
+      <label for="twitter_name">Twitter Name</label>
+    </div>
+    <div class="input-field">
+      <input id="linkedIn_name" name="linkedInURI" type="text" value="{{user.linkedInURI}}" {{{ifInvalid errors 'linkedInURI'}}}>
+      <label for="linkedIn_name">LinkedIn Name</label>
+    </div>
+    {{#unless user.validated}}
+    <div class="alert-box alert-warning">
+      <p>
+        Your profile will be validated by a moderator before it can be seen by the public.
+        An email will be sent to notify you when this has been done.
+      </p>
+    </div>
+    {{/unless}}
+    <input id="submit-button" type="submit" value="{{submitText}}">
+  </form>
+<!--   \{{#ifRegistered postAction}}
+  <a id="delete-btn" href="/confirm-delete">Delete account</a>
+  \{{/ifRegistered}} -->
+</div>
+<script src="{{asset '/javascripts/register.js' 0}}" type="text/javascript"></script>

@@ -1,3 +1,4 @@
+import serializeError from 'serialize-error';
 import log from '../log';
 
 // Handle error 404
@@ -9,7 +10,10 @@ export function notFoundHandler(req, res, next) {
 
 // Handle all other errors
 export function errorHandler(err, req, res, next) {
-  log.error({ url: req.url, err }, 'An error occurred serving route');
+  log.error({
+    url: req.url,
+    error: serializeError(err)
+  }, 'An error occurred serving route');
 
   // Delegate to the default error handler if
   // already started responding

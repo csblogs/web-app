@@ -1,4 +1,5 @@
 import express from 'express';
+import log from '../log';
 import * as bloggerController from '../controllers/blogger-controller';
 import * as blogController from '../controllers/blog-controller';
 import { ensureAuthenticated } from '../helpers/authentication';
@@ -16,8 +17,46 @@ function setAvatarCookie(res, blogger) {
 }
 /* eslint-enable no-param-reassign */
 
+router.route('/register')
+.get((req, res) => {
+  // if (req.user && req.user.iRegistered && req.cookies.user_token) {
+  if (req.user && req.cookies.user_token) {
+    res.render('register', {
+      title: 'Register',
+      submitText: 'Add your blog',
+      postAction: 'register',
+      user: req.user
+    });
+  } else {
+    res.redirect('/login');
+  }
+})
+.post((req, res, next) => {
+  const user = req.body;
+  user.profilePictureURI = req.user.profilePictureURI;
+
+  bloggerController.registerUser(user, req.user.apiToken)
+    .then(data => {
+      if (data.status === 201) {
+        log.info(data, 'SUCCESSFULLY REGISTERED');
+        res.redirect('/profile');
+      } else {
+        res.render('register', {
+          title: 'Register',
+          submitText: 'Add your blog',
+          postAction: 'register',
+          errors: data.errors,
+          user
+        });
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 router.get('/login', (req, res) => {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.cookies.user_token) {
     res.redirect('/profile');
   } else {
     res.render('login', {
@@ -28,6 +67,7 @@ router.get('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
   res.clearCookie('user_avatar_url');
+  res.clearCookie('user_token');
   req.logout();
   res.redirect('/');
 });
@@ -35,7 +75,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile', ensureAuthenticated, (req, res, next) => {
   const pageNumber = req.query.page || 1;
 
-  bloggerController.getLoggedInBlogger(req.user.token)
+  bloggerController.getLoggedInBlogger(req.cookies.user_token)
     .then(blogger => {
       setAvatarCookie(res, blogger);
 

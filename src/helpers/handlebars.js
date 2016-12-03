@@ -51,13 +51,11 @@ export function urlFormat(urlStr) {
 }
 
 export function section(name, options) {
-  /* eslint-disable no-underscore-dangle */
   if (!this._sections) {
     this._sections = {};
   }
   this._sections[name] = options.fn(this);
   return null;
-  /* eslint-enable no-underscore-dangle */
 }
 
 export function add(strNum1, strNum2) {
@@ -72,4 +70,16 @@ export function add(strNum1, strNum2) {
 
 export function svg(name) {
   return `/public/images/defs-069a8abc47.svg#${name}`;
+}
+
+export function ifInvalid(errors, name) {
+  if (errors && errors[name]) {
+    // for (let i = 0; i < errors.length; ++i) {
+    //   if (errors[i].parameter === name) {
+    //     return 'class="invalid"';
+    //   }
+    // }
+    return 'class="invalid"';
+  }
+  return '';
 }
