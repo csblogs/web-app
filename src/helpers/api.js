@@ -21,8 +21,17 @@ function handlePostResponse(url, resolve, reject, err, res, body) {
   if (err) {
     return reject(err);
   }
-  const data = body;
-  data.status = res.statusCode;
+
+  let data = body;
+
+  if (typeof body === 'string') {
+    data = {
+      body,
+      status: res.statusCode
+    };
+  } else {
+    data.status = res.statusCode;
+  }
 
   return resolve(data);
 }

@@ -65,7 +65,7 @@ export function registerUser(user, token) {
 }
 
 export function updateUser(user, token) {
-  return api.postAuth('user', user, token)
+  return api.putAuth('user/me', user, token)
     .then(data => {
       if (data.status === 200) {
         return data;
@@ -79,5 +79,5 @@ export function updateUser(user, token) {
 }
 
 export function deleteUser(token) {
-  return api.deleteAuth('user', null, token);
+  return api.deleteAuth('user/me', null, token);
 }

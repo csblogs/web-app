@@ -9,11 +9,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 /* eslint-disable no-param-reassign */
 function setAvatarCookie(res, blogger) {
-  res.cookie('user_avatar_url', blogger.profile_picture_uri, {
+  res.cookie('user_avatar_url', blogger.profilePictureURI, {
     httpOnly: true,
     secure: isProduction
   });
-  res.locals.user_avatar_url = blogger.profile_picture_uri;
+  res.locals.user_avatar_url = blogger.profilePictureURI;
 }
 /* eslint-enable no-param-reassign */
 
@@ -85,7 +85,7 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
           const hasLess = pageNumber > 1;
 
           res.render('profile', {
-            title: `${blogger.first_name} ${blogger.last_name}`,
+            title: `${blogger.firstName} ${blogger.lastName}`,
             loggedIn: true,
             blogger,
             posts,
@@ -122,7 +122,7 @@ router.route('/account')
 
   bloggerController.updateUser(user, req.user.apiToken)
     .then(data => {
-      if (data.status === 201) {
+      if (data.status === 200) {
         log.info(data, 'SUCCESSFULLY UPDATED');
         res.redirect('/profile');
       } else {
