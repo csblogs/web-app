@@ -70,11 +70,8 @@ main {
 .button {
   width: 114px;
   height: 24px;
-  transition: background 0.4s ease-out;
   background: rgba(0, 0, 0, 0.18);
-  border-radius: 6px;
   padding: 7px;
-  text-decoration: none;
 
   svg {
     float: left;

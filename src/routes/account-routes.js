@@ -100,4 +100,64 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
     });
 });
 
+router.route('/account')
+.get(ensureAuthenticated, (req, res, next) => {
+  bloggerController.getLoggedInBlogger(req.user.apiToken)
+    .then(user => {
+      res.render('register', {
+        title: 'Account',
+        submitText: 'Update profile',
+        postAction: 'account',
+        showDelete: true,
+        user
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
+})
+.post(ensureAuthenticated, (req, res, next) => {
+  const user = req.body;
+  user.profilePictureURI = req.user.profilePictureURI;
+
+  bloggerController.updateUser(user, req.user.apiToken)
+    .then(data => {
+      if (data.status === 201) {
+        log.info(data, 'SUCCESSFULLY UPDATED');
+        res.redirect('/profile');
+      } else {
+        res.render('register', {
+          title: 'Account',
+          submitText: 'Update profile',
+          postAction: 'account',
+          errors: data.errors,
+          user
+        });
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+router.get('/confirm-delete', ensureAuthenticated, (req, res) => {
+  res.render('confirm-delete', {
+    title: 'Confirm account deletion'
+  });
+});
+
+router.get('/delete-account', ensureAuthenticated, (req, res, next) => {
+  bloggerController.deleteUser(req.cookies.user_token)
+    .then(data => {
+      if (data.status === 200) {
+        res.redirect('/logout');
+      } else {
+        next(new Error(data.error || 'Failed to delete user'));
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 export default router;

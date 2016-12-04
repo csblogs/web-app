@@ -64,3 +64,50 @@ hr {
     color: #21759b;
   }
 }
+
+// confirm-delete CSS
+#delete-txt {
+  margin: 10px 30px;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+
+  p:last-child {
+    font-weight: 600;
+  }
+}
+
+#delete-btns {
+  text-align: center;
+  padding: 22px 0;
+}
+
+.button {
+  color: #fff;
+  padding: 7px 16px;
+  margin: 0 10px;
+  width: 200px;
+  font-size: 20px;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+#submit-button {
+  background: #cf000f;
+
+  &:hover {
+    background: #f22613;
+  }
+}
+
+#cancel-button {
+  background: #16a085;
+
+  &:hover {
+    background: #19b698;
+  }
+}

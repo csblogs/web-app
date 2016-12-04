@@ -87,3 +87,37 @@ export function postAuth(url, data, token) {
     );
   });
 }
+
+export function putAuth(url, data, token) {
+  return new Promise((resolve, reject) => {
+    request.put({
+      baseUrl: BASE_URL,
+      url,
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data,
+      json: true
+    },
+    (err, res, body) =>
+      handlePostResponse(url, resolve, reject, err, res, body)
+    );
+  });
+}
+
+export function deleteAuth(url, data, token) {
+  return new Promise((resolve, reject) => {
+    request.delete({
+      baseUrl: BASE_URL,
+      url,
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data,
+      json: true
+    },
+    (err, res, body) =>
+      handlePostResponse(url, resolve, reject, err, res, body)
+    );
+  });
+}
