@@ -37,11 +37,11 @@
     </div>
   </div>
   <div class="profile-body">
-    {{#unless blogger.verified}}
+    {{#unlessVerified blogger.verified}}
     <div class="alert-box alert-info">
       <p>Your profile will be verified by a moderator before it can be seen by the public. Check back soon!</p>
     </div>
-    {{/unless}}
+    {{/unlessVerified}}
     <h3 class="subheader">About</h3>
     <p itemprop="description">{{blogger.bio}}</p>
     <div>

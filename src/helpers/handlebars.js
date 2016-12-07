@@ -72,13 +72,15 @@ export function svg(name) {
   return `/public/images/defs-069a8abc47.svg#${name}`;
 }
 
+export function unlessVerified(verified, options) {
+  if (verified === false) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}
+
 export function ifInvalid(errors, name) {
   if (errors && errors[name]) {
-    // for (let i = 0; i < errors.length; ++i) {
-    //   if (errors[i].parameter === name) {
-    //     return 'class="invalid"';
-    //   }
-    // }
     return 'class="invalid"';
   }
   return '';
