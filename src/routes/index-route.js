@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     .then(posts => {
       if (posts.length === 0) {
         res.render('info', {
-          title: 'No more posts',
+          title: 'Home',
           description: 'No more posts to read.'
         });
       } else {

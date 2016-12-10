@@ -93,6 +93,13 @@ hr {
   clear: both;
 }
 
+.button {
+  transition: background 0.4s ease-out;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 // Pagination buttons
 
 .nav-pages {

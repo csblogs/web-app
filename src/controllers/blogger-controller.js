@@ -63,3 +63,21 @@ export function registerUser(user, token) {
       };
     });
 }
+
+export function updateUser(user, token) {
+  return api.putAuth('user/me', user, token)
+    .then(data => {
+      if (data.status === 200) {
+        return data;
+      }
+
+      return {
+        status: data.status,
+        errors: assignFriendlyFieldNames(data.validationErrors)
+      };
+    });
+}
+
+export function deleteUser(token) {
+  return api.deleteAuth('user/me', null, token);
+}

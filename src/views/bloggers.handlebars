@@ -11,12 +11,12 @@
 <ul class="blogger-list">
   {{#each bloggers}}
   <li class="blogger-item" itemscope itemprop="author" itemtype="https://schema.org/Person">
-    <a class="avatar" href="/bloggers/{{vanity_name}}" itemprop="sameAs">
-      <img class="avatar" src="{{profile_picture_uri}}" alt="Avatar" itemprop="image"/>
+    <a class="avatar" href="/bloggers/{{vanityName}}" itemprop="sameAs">
+      <img class="avatar" src="{{profilePictureURI}}" alt="Avatar" itemprop="image"/>
     </a>
     <h2>
-      <span itemprop="givenName">{{first_name}}</span>
-      <span itemprop="familyName">{{last_name}}</span>
+      <span itemprop="givenName">{{firstName}}</span>
+      <span itemprop="familyName">{{lastName}}</span>
     </h2>
     {{> display-site}}
   </li>

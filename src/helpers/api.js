@@ -21,8 +21,17 @@ function handlePostResponse(url, resolve, reject, err, res, body) {
   if (err) {
     return reject(err);
   }
-  const data = body;
-  data.status = res.statusCode;
+
+  let data = body;
+
+  if (typeof body === 'string') {
+    data = {
+      body,
+      status: res.statusCode
+    };
+  } else {
+    data.status = res.statusCode;
+  }
 
   return resolve(data);
 }
@@ -74,6 +83,40 @@ export function post(url, data) {
 export function postAuth(url, data, token) {
   return new Promise((resolve, reject) => {
     request.post({
+      baseUrl: BASE_URL,
+      url,
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data,
+      json: true
+    },
+    (err, res, body) =>
+      handlePostResponse(url, resolve, reject, err, res, body)
+    );
+  });
+}
+
+export function putAuth(url, data, token) {
+  return new Promise((resolve, reject) => {
+    request.put({
+      baseUrl: BASE_URL,
+      url,
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data,
+      json: true
+    },
+    (err, res, body) =>
+      handlePostResponse(url, resolve, reject, err, res, body)
+    );
+  });
+}
+
+export function deleteAuth(url, data, token) {
+  return new Promise((resolve, reject) => {
+    request.delete({
       baseUrl: BASE_URL,
       url,
       headers: {

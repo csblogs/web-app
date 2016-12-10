@@ -1,6 +1,6 @@
 {{#section 'css'}}
 <link rel="stylesheet" href="{{asset '/styles/register.css' 0}}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {{/section}}
 
 <div id="body-content">
@@ -21,12 +21,12 @@
     <h2 class="subheader">Your Profile</h2>
     <div class="clearfix">
       <div class="input-field column">
-        <input id="first_name" name="firstName" type="text" value="{{user.firstName}}" required {{{ifInvalid errors 'firstName'}}}>
-        <label for="first_name">First Name</label>
+        <input id="firstName" name="firstName" type="text" value="{{user.firstName}}" required {{{ifInvalid errors 'firstName'}}}>
+        <label for="firstName">First Name</label>
       </div>
       <div class="input-field column">
-        <input id="last_name" name="lastName" type="text" value="{{user.lastName}}" required {{{ifInvalid errors 'lastName'}}}>
-        <label for="last_name">Last Name</label>
+        <input id="lastName" name="lastName" type="text" value="{{user.lastName}}" required {{{ifInvalid errors 'lastName'}}}>
+        <label for="lastName">Last Name</label>
       </div>
     </div>
     <div class="input-field">
@@ -74,18 +74,17 @@
       <input id="linkedIn_name" name="linkedInURI" type="text" value="{{user.linkedInURI}}" {{{ifInvalid errors 'linkedInURI'}}}>
       <label for="linkedIn_name">LinkedIn Name</label>
     </div>
-    {{#unless user.validated}}
+    {{#unless user.verified}}
     <div class="alert-box alert-warning">
       <p>
-        Your profile will be validated by a moderator before it can be seen by the public.
-        An email will be sent to notify you when this has been done.
+        Your profile will be verified by a moderator before it can be seen by the public.
       </p>
     </div>
     {{/unless}}
-    <input id="submit-button" type="submit" value="{{submitText}}">
+    <input id="submit-button" class="button" type="submit" value="{{submitText}}">
   </form>
-<!--   \{{#ifRegistered postAction}}
+  {{#if showDelete}}
   <a id="delete-btn" href="/confirm-delete">Delete account</a>
-  \{{/ifRegistered}} -->
+  {{/if}}
 </div>
 <script src="{{asset '/javascripts/register.js' 0}}" type="text/javascript"></script>

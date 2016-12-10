@@ -9,11 +9,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 /* eslint-disable no-param-reassign */
 function setAvatarCookie(res, blogger) {
-  res.cookie('user_avatar_url', blogger.profile_picture_uri, {
+  res.cookie('user_avatar_url', blogger.profilePictureURI, {
     httpOnly: true,
     secure: isProduction
   });
-  res.locals.user_avatar_url = blogger.profile_picture_uri;
+  res.locals.user_avatar_url = blogger.profilePictureURI;
 }
 /* eslint-enable no-param-reassign */
 
@@ -85,7 +85,7 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
           const hasLess = pageNumber > 1;
 
           res.render('profile', {
-            title: `${blogger.first_name} ${blogger.last_name}`,
+            title: `${blogger.firstName} ${blogger.lastName}`,
             loggedIn: true,
             blogger,
             posts,
@@ -94,6 +94,66 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
             hasLess
           });
         });
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+router.route('/account')
+.get(ensureAuthenticated, (req, res, next) => {
+  bloggerController.getLoggedInBlogger(req.user.apiToken)
+    .then(user => {
+      res.render('register', {
+        title: 'Account',
+        submitText: 'Update profile',
+        postAction: 'account',
+        showDelete: true,
+        user
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
+})
+.post(ensureAuthenticated, (req, res, next) => {
+  const user = req.body;
+  user.profilePictureURI = req.user.profilePictureURI;
+
+  bloggerController.updateUser(user, req.user.apiToken)
+    .then(data => {
+      if (data.status === 200) {
+        log.info(data, 'SUCCESSFULLY UPDATED');
+        res.redirect('/profile');
+      } else {
+        res.render('register', {
+          title: 'Account',
+          submitText: 'Update profile',
+          postAction: 'account',
+          errors: data.errors,
+          user
+        });
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+router.get('/confirm-delete', ensureAuthenticated, (req, res) => {
+  res.render('confirm-delete', {
+    title: 'Confirm account deletion'
+  });
+});
+
+router.get('/delete-account', ensureAuthenticated, (req, res, next) => {
+  bloggerController.deleteUser(req.cookies.user_token)
+    .then(data => {
+      if (data.status === 200) {
+        res.redirect('/logout');
+      } else {
+        next(new Error(data.error || 'Failed to delete user'));
+      }
     })
     .catch(err => {
       next(err);

@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     .then(bloggers => {
       if (bloggers.length === 0) {
         res.render('info', {
-          title: 'No more bloggers',
+          title: 'Bloggers',
           description: 'No more bloggers to see.'
         });
       } else {
@@ -44,7 +44,7 @@ router.get('/:vanity_name', (req, res, next) => {
           const hasLess = pageNumber > 1;
 
           res.render('profile', {
-            title: `${blogger.first_name} ${blogger.last_name}`,
+            title: `${blogger.firstName} ${blogger.lastName}`,
             blogger,
             posts,
             pageNumber,

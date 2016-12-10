@@ -24,7 +24,11 @@
             <li><a href="/bloggers">Bloggers</a></li>
             {{#if user_avatar_url}}
             <li><a href="/logout">Log out</a></li>
-            <li><img class="avatar" src="{{user_avatar_url}}" alt="Avatar"/></li>
+            <li>
+              <a href="/profile" class="avatar">
+                <img class="avatar" src="{{user_avatar_url}}" alt="Avatar"/>
+              </a>
+            </li>
             {{else}}
             <li id="addblog-btn"><a href="/login">Add your blog</a></li>
             <li id="addblog-sml-btn"><a href="/login">Add blog</a></li>
@@ -42,7 +46,7 @@
         </svg>
         <div id="footer-info">
           <p>Computer Science Blogs</p>
-          <p>&copy; csblogs.com 2015 | Email: <a href="mailto:contact@csblogs.com">contact@csblogs.com</a></p>
+          <p>&copy; csblogs.com 2016 | Email: <a href="mailto:contact@csblogs.com">contact@csblogs.com</a></p>
         </div>
       </div>
       <div id="footer-right">
