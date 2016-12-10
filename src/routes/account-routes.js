@@ -6,6 +6,7 @@ import { ensureAuthenticated } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
 const isProduction = process.env.NODE_ENV === 'production';
+const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
 
 /* eslint-disable no-param-reassign */
 function setAvatarCookie(res, blogger) {
@@ -146,6 +147,12 @@ router.get('/confirm-delete', ensureAuthenticated, (req, res) => {
 
 router.get('/delete-account', ensureAuthenticated, async (req, res, next) => {
   try {
+    if (req.get('Referrer') !== `${BASE_URL}/confirm-delete`) {
+      const error = new Error('Request has not been confirmed by the user.');
+      error.status = 400;
+      throw error;
+    }
+
     const data = await bloggerController.deleteUser(req.cookies.user_token);
 
     if (data.status === 200) {
