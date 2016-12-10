@@ -11,17 +11,17 @@ const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
 export const passport = _passport;
 
 export function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated() && req.cookies.user_token) {
+  if (req.isAuthenticated()) {
     return next();
   }
   // Not logged in
   return res.redirect('/login');
 }
 
-export function avatarFromCookie(req, res, next) {
+export function getUserAvatar(req, res, next) {
   /* eslint-disable no-param-reassign */
   if (req.isAuthenticated()) {
-    res.locals.user_avatar_url = req.cookies.user_avatar_url;
+    res.locals.user_avatar_url = req.user.profilePictureURI;
   }
   next();
   /* eslint-enable no-param-reassign */
@@ -104,7 +104,6 @@ function authenticateWithAPI(service, accessToken, profile, done) {
   })
   .then(res => {
     log.info(res, 'User authenticated with API');
-    // done(null, res);
     done(null, normalizeUser(profile, res));
   })
   .catch(err => {
