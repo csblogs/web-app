@@ -19,7 +19,7 @@ function setAvatarCookie(res, blogger) {
 
 router.route('/register')
 .get((req, res) => {
-  // if (req.user && req.user.iRegistered && req.cookies.user_token) {
+  // if (req.user && req.user.isRegistered && req.cookies.user_token) {
   if (req.user && req.cookies.user_token) {
     res.render('register', {
       title: 'Register',
@@ -31,28 +31,28 @@ router.route('/register')
     res.redirect('/login');
   }
 })
-.post((req, res, next) => {
+.post(async (req, res, next) => {
   const user = req.body;
   user.profilePictureURI = req.user.profilePictureURI;
 
-  bloggerController.registerUser(user, req.user.apiToken)
-    .then(data => {
-      if (data.status === 201) {
-        log.info(data, 'SUCCESSFULLY REGISTERED');
-        res.redirect('/profile');
-      } else {
-        res.render('register', {
-          title: 'Register',
-          submitText: 'Add your blog',
-          postAction: 'register',
-          errors: data.errors,
-          user
-        });
-      }
-    })
-    .catch(err => {
-      next(err);
-    });
+  try {
+    const data = await bloggerController.registerUser(user, req.user.apiToken);
+
+    if (data.status === 201) {
+      log.info(data, 'SUCCESSFULLY REGISTERED');
+      res.redirect('/profile');
+    } else {
+      res.render('register', {
+        title: 'Register',
+        submitText: 'Add your blog',
+        postAction: 'register',
+        errors: data.errors,
+        user
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get('/login', (req, res) => {
@@ -72,72 +72,70 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/profile', ensureAuthenticated, (req, res, next) => {
+router.get('/profile', ensureAuthenticated, async (req, res, next) => {
   const pageNumber = req.query.page || 1;
 
-  bloggerController.getLoggedInBlogger(req.cookies.user_token)
-    .then(blogger => {
-      setAvatarCookie(res, blogger);
+  try {
+    const blogger = await bloggerController.getLoggedInBlogger(req.cookies.user_token);
+    const posts = await blogController.getBloggerPosts(blogger.id, pageNumber);
 
-      blogController.getBloggerPosts(blogger.id, pageNumber)
-        .then(posts => {
-          const hasMore = posts.length === blogController.PAGE_SIZE;
-          const hasLess = pageNumber > 1;
+    const hasMore = posts.length === blogController.PAGE_SIZE;
+    const hasLess = pageNumber > 1;
 
-          res.render('profile', {
-            title: `${blogger.firstName} ${blogger.lastName}`,
-            loggedIn: true,
-            blogger,
-            posts,
-            pageNumber,
-            hasMore,
-            hasLess
-          });
-        });
-    })
-    .catch(err => {
-      next(err);
+    setAvatarCookie(res, blogger);
+
+    res.render('profile', {
+      title: `${blogger.firstName} ${blogger.lastName}`,
+      loggedIn: true,
+      blogger,
+      posts,
+      pageNumber,
+      hasMore,
+      hasLess
     });
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.route('/account')
-.get(ensureAuthenticated, (req, res, next) => {
-  bloggerController.getLoggedInBlogger(req.user.apiToken)
-    .then(user => {
+.get(ensureAuthenticated, async (req, res, next) => {
+  try {
+    const user = await bloggerController.getLoggedInBlogger(req.user.apiToken);
+
+    res.render('register', {
+      title: 'Account',
+      submitText: 'Update profile',
+      postAction: 'account',
+      showDelete: true,
+      user
+    });
+  } catch (err) {
+    next(err);
+  }
+})
+.post(ensureAuthenticated, async (req, res, next) => {
+  const user = req.body;
+  user.profilePictureURI = req.user.profilePictureURI;
+
+  try {
+    const data = await bloggerController.updateUser(user, req.user.apiToken);
+
+    if (data.status === 200) {
+      log.info(data, 'SUCCESSFULLY UPDATED');
+      res.redirect('/profile');
+    } else {
       res.render('register', {
         title: 'Account',
         submitText: 'Update profile',
         postAction: 'account',
-        showDelete: true,
+        errors: data.errors,
         user
       });
-    })
-    .catch(err => {
-      next(err);
-    });
-})
-.post(ensureAuthenticated, (req, res, next) => {
-  const user = req.body;
-  user.profilePictureURI = req.user.profilePictureURI;
-
-  bloggerController.updateUser(user, req.user.apiToken)
-    .then(data => {
-      if (data.status === 200) {
-        log.info(data, 'SUCCESSFULLY UPDATED');
-        res.redirect('/profile');
-      } else {
-        res.render('register', {
-          title: 'Account',
-          submitText: 'Update profile',
-          postAction: 'account',
-          errors: data.errors,
-          user
-        });
-      }
-    })
-    .catch(err => {
-      next(err);
-    });
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get('/confirm-delete', ensureAuthenticated, (req, res) => {
@@ -146,18 +144,18 @@ router.get('/confirm-delete', ensureAuthenticated, (req, res) => {
   });
 });
 
-router.get('/delete-account', ensureAuthenticated, (req, res, next) => {
-  bloggerController.deleteUser(req.cookies.user_token)
-    .then(data => {
-      if (data.status === 200) {
-        res.redirect('/logout');
-      } else {
-        next(new Error(data.error || 'Failed to delete user'));
-      }
-    })
-    .catch(err => {
-      next(err);
-    });
+router.get('/delete-account', ensureAuthenticated, async (req, res, next) => {
+  try {
+    const data = await bloggerController.deleteUser(req.cookies.user_token);
+
+    if (data.status === 200) {
+      res.redirect('/logout');
+    } else {
+      next(new Error(data.error || 'Failed to delete user'));
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;
