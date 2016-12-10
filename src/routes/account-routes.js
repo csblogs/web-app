@@ -5,31 +5,19 @@ import * as blogController from '../controllers/blog-controller';
 import { ensureAuthenticated } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
-const isProduction = process.env.NODE_ENV === 'production';
 const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
 
-/* eslint-disable no-param-reassign */
-function setAvatarCookie(res, blogger) {
-  res.cookie('user_avatar_url', blogger.profilePictureURI, {
-    httpOnly: true,
-    secure: isProduction
-  });
-  res.locals.user_avatar_url = blogger.profilePictureURI;
-}
-/* eslint-enable no-param-reassign */
-
 router.route('/register')
-.get((req, res) => {
-  // if (req.user && req.user.isRegistered && req.cookies.user_token) {
-  if (req.user && req.cookies.user_token) {
+.get(ensureAuthenticated, (req, res) => {
+  if (req.user.isRegistered) {
+    res.redirect('/profile');
+  } else {
     res.render('register', {
       title: 'Register',
       submitText: 'Add your blog',
       postAction: 'register',
       user: req.user
     });
-  } else {
-    res.redirect('/login');
   }
 })
 .post(async (req, res, next) => {
@@ -57,7 +45,7 @@ router.route('/register')
 });
 
 router.get('/login', (req, res) => {
-  if (req.isAuthenticated() && req.cookies.user_token) {
+  if (req.isAuthenticated()) {
     res.redirect('/profile');
   } else {
     res.render('login', {
@@ -67,8 +55,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  res.clearCookie('user_avatar_url');
-  res.clearCookie('user_token');
   req.logout();
   res.redirect('/');
 });
@@ -76,14 +62,16 @@ router.get('/logout', (req, res) => {
 router.get('/profile', ensureAuthenticated, async (req, res, next) => {
   const pageNumber = req.query.page || 1;
 
+  if (!req.user.isRegistered) {
+    res.redirect('/register');
+  }
+
   try {
-    const blogger = await bloggerController.getLoggedInBlogger(req.cookies.user_token);
+    const blogger = await bloggerController.getLoggedInBlogger(req.user.apiToken);
     const posts = await blogController.getBloggerPosts(blogger.id, pageNumber);
 
     const hasMore = posts.length === blogController.PAGE_SIZE;
     const hasLess = pageNumber > 1;
-
-    setAvatarCookie(res, blogger);
 
     res.render('profile', {
       title: `${blogger.firstName} ${blogger.lastName}`,
@@ -153,7 +141,7 @@ router.get('/delete-account', ensureAuthenticated, async (req, res, next) => {
       throw error;
     }
 
-    const data = await bloggerController.deleteUser(req.cookies.user_token);
+    const data = await bloggerController.deleteUser(req.user.apiToken);
 
     if (data.status === 200) {
       res.redirect('/logout');
