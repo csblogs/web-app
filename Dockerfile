@@ -16,4 +16,4 @@ COPY . /usr/src/csblogs-web-app
 EXPOSE 80
 
 ENTRYPOINT [ "npm", "run" ];
-CMD ["start-production"]
+CMD ["start-docker"]

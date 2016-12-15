@@ -35,13 +35,14 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    secure: isProduction
+    secure: false
   }
 }));
 app.use(auth.passport.initialize());
 app.use(auth.passport.session());
 app.use(auth.getUserAvatar);
 
+app.use(express.static(path.join(__dirname, 'icons'), { maxAge }));
 app.use('/public', express.static(assetPath, { maxAge }));
 app.use(assets('/public', assetPath));
 
@@ -54,8 +55,8 @@ app.use(errorRoutes.errorHandler);
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
-  layoutsDir: 'app/views/layouts/',
-  partialsDir: 'app/views/partials/',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials'),
   helpers: hbsHelpers
 }));
 app.set('views', path.join(__dirname, 'views'));
