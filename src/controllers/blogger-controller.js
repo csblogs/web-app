@@ -71,9 +71,18 @@ export function updateUser(user, token) {
         return data;
       }
 
+      const error = data;
+
+      if (error.status === 422 && error.validationErrors.vanityName) {
+        error.validationErrors.vanityName =
+          `should only contain lowercase a-z, 0-9, and hyphens
+           (no more than one hyphen consecutively) and must not
+           start or end with a hyphen`;
+      }
+
       return {
-        status: data.status,
-        errors: assignFriendlyFieldNames(data.validationErrors)
+        status: error.status,
+        errors: assignFriendlyFieldNames(error.validationErrors)
       };
     });
 }
