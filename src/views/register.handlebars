@@ -71,8 +71,8 @@
       <label for="twitter_name">Twitter Name</label>
     </div>
     <div class="input-field">
-      <input id="linkedIn_name" name="linkedInURI" type="text" value="{{user.linkedInURI}}" {{{ifInvalid errors 'linkedInURI'}}}>
-      <label for="linkedIn_name">LinkedIn Name</label>
+      <input id="linkedIn_uri" name="linkedInURI" type="url" value="{{user.linkedInURI}}" {{{ifInvalid errors 'linkedInURI'}}}>
+      <label for="linkedIn_uri">LinkedIn URL</label>
     </div>
     {{#unless user.verified}}
     <div class="alert-box alert-warning">
