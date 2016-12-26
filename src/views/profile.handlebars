@@ -43,7 +43,7 @@
     </div>
     {{/unlessVerified}}
     <h3 class="subheader">About</h3>
-    <p itemprop="description">{{blogger.bio}}</p>
+    <p class="description" itemprop="description">{{blogger.bio}}</p>
     <div>
       {{#if blogger.githubUsername}}
       {{> pill baseurl='https://github.com/' id=blogger.githubUsername icon='github' label='GitHub'}}

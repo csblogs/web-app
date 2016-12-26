@@ -4,7 +4,8 @@ import GitHubStrategy from 'passport-github2';
 import { Strategy as WordpressStrategy } from 'passport-wordpress';
 import { Strategy as StackExchangeStrategy } from 'passport-stackexchange';
 import log from '../log';
-import * as api from '../helpers/api';
+import * as api from './api';
+import * as helpers from './auth-helpers';
 
 const BASE_URL = process.env.CSBLOGS_BASE_URL || process.env.NOW_URL;
 
@@ -27,10 +28,6 @@ export function getUserAvatar(req, res, next) {
   /* eslint-enable no-param-reassign */
 }
 
-function normalizeVanityName(name) {
-  return name.replace(/\s+/g, '-').toLowerCase();
-}
-
 function normalizeUser(passportUser, authDetails) {
   let userAsBlogger = null;
 
@@ -45,39 +42,35 @@ function normalizeUser(passportUser, authDetails) {
         blogURI: passportUser._json.blog,
         githubUsername: passportUser._json.login,
         bio: passportUser._json.bio,
-        vanityName: normalizeVanityName(passportUser.username)
+        vanityName: helpers.normalizeVanityName(passportUser.username)
       };
-
-      log.info(userAsBlogger, 'GitHub blogger');
-
-      // Check displayName for first/last name combinations
       if (passportUser.displayName) {
-        if (passportUser.displayName.includes(' ')) {
-          const name = passportUser.displayName.split(' ');
-          userAsBlogger.firstName = name.shift();
-          userAsBlogger.lastName = name.join(' ');
-        } else {
-          userAsBlogger.firstName = passportUser.displayName;
-        }
+        userAsBlogger = helpers.getFullName(passportUser.displayName, userAsBlogger);
       }
       break;
     }
     case 'Wordpress': {
       userAsBlogger = {
-        profilePictureURI: passportUser._json.avatar_URL,
+        profilePictureURI: helpers.resizeGravatar(passportUser._json.avatar_URL),
         emailAddress: passportUser._json.email,
         blogFeedURI: `http://${passportUser.displayName}.wordpress.com/feed`,
         blogURI: `http://${passportUser.displayName}.wordpress.com`,
-        vanityName: normalizeVanityName(passportUser._json.display_name)
+        vanityName: helpers.normalizeVanityName(passportUser._json.display_name)
       };
+      if (passportUser._json.display_name) {
+        userAsBlogger = helpers.getFullName(passportUser._json.display_name, userAsBlogger);
+      }
       break;
     }
     case 'stackexchange': {
       userAsBlogger = {
         profilePictureURI: passportUser.profile_image,
-        vanityName: normalizeVanityName(passportUser.display_name),
+        vanityName: helpers.normalizeVanityName(passportUser.display_name),
         blogURI: passportUser.website_url
       };
+      if (passportUser.display_name) {
+        userAsBlogger = helpers.getFullName(passportUser.display_name, userAsBlogger);
+      }
       break;
     }
     default: {
