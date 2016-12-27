@@ -12,10 +12,10 @@
     <header>
       <h2 itemprop="headline"><a href="{{link}}">{{title}}</a></h2>
     </header>
-    {{#if image_uri}}
+    {{#if imageURI}}
     <div class="featured-image">
       <a href="{{link}}">
-        <img itemprop="image" src="{{image_uri}}" alt="Featured Image"/>
+        <img itemprop="image" src="{{imageURI}}" alt="Featured Image"/>
       </a>
     </div>
     {{/if}}
@@ -31,7 +31,7 @@
             <span itemprop="familyName">{{author.lastName}}</span>
           </a>
         </div>
-        <p class="article-date" itemprop="datePublished">{{formatDateShort date_published}}</p>
+        <p class="article-date" itemprop="datePublished">{{formatDateShort datePublished}}</p>
       </div>
     </footer>
     {{#unless @last}}<hr/>{{/unless}}

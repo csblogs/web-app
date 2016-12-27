@@ -64,11 +64,11 @@
     {{#each posts}}
     <article itemscope itemtype="http://schema.org/BlogPosting">
       <h4 itemprop="headline"><a href="{{link}}">{{title}}</a></h4>
-      <p class="article-date" itemprop="datePublished">{{formatDateLong date_published}}</p>
-      {{#if image_uri}}
+      <p class="article-date" itemprop="datePublished">{{formatDateLong datePublished}}</p>
+      {{#if imageURI}}
       <div class="featured-image">
         <a href="{{link}}">
-          <img itemprop="image" src="{{image_uri}}" alt="Featured Image"/>
+          <img itemprop="image" src="{{imageURI}}" alt="Featured Image"/>
         </a>
       </div>
       {{/if}}
