@@ -19,7 +19,7 @@ export function getBloggerPosts(bloggerId, pageNumber) {
 
 export function getPostAuthors(posts) {
   // Add posts author IDs to array
-  const ids = posts.map(post => post.author_id);
+  const ids = posts.map(post => post.authorId);
 
   // Stringify as CSV
   const idsParams = ids.join(',');
@@ -32,7 +32,7 @@ export function getPostAuthors(posts) {
     const postsWithAuthors = posts;
 
     for (let i = 0; i < posts.length; ++i) {
-      postsWithAuthors[i].author = users[posts[i].author_id];
+      postsWithAuthors[i].author = users[posts[i].authorId];
     }
     return postsWithAuthors;
   });
