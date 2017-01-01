@@ -1,4 +1,5 @@
 import * as api from '../helpers/api';
+import * as blogController from '../controllers/blog-controller';
 
 export const PAGE_SIZE = 16;
 
@@ -89,4 +90,26 @@ export function updateUser(user, token) {
 
 export function deleteUser(token) {
   return api.deleteAuth('user/me', null, token);
+}
+
+export async function renderProfile(req, res, loggedIn) {
+  const pageNumber = req.query.page || 1;
+
+  const blogger = loggedIn ?
+    await getLoggedInBlogger(req.user.apiToken) :
+    await getSingleBlogger(req.params.vanity_name);
+
+  const posts = await blogController.getBloggerPosts(blogger.id, pageNumber);
+  const hasMore = posts.length === blogController.PAGE_SIZE;
+  const hasLess = pageNumber > 1;
+
+  res.render('profile', {
+    title: `${blogger.firstName} ${blogger.lastName}`,
+    loggedIn,
+    blogger,
+    posts,
+    pageNumber,
+    hasMore,
+    hasLess
+  });
 }

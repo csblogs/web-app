@@ -1,7 +1,6 @@
 import express from 'express';
 import log from '../log';
 import * as bloggerController from '../controllers/blogger-controller';
-import * as blogController from '../controllers/blog-controller';
 import { ensureAuthenticated } from '../helpers/authentication';
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -59,29 +58,13 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/profile', ensureAuthenticated, async (req, res, next) => {
-  const pageNumber = req.query.page || 1;
-
+router.get('/profile', ensureAuthenticated, (req, res, next) => {
   if (!req.user.isRegistered) {
     res.redirect('/register');
   }
 
   try {
-    const blogger = await bloggerController.getLoggedInBlogger(req.user.apiToken);
-    const posts = await blogController.getBloggerPosts(blogger.id, pageNumber);
-
-    const hasMore = posts.length === blogController.PAGE_SIZE;
-    const hasLess = pageNumber > 1;
-
-    res.render('profile', {
-      title: `${blogger.firstName} ${blogger.lastName}`,
-      loggedIn: true,
-      blogger,
-      posts,
-      pageNumber,
-      hasMore,
-      hasLess
-    });
+    bloggerController.renderProfile(req, res, true);
   } catch (err) {
     next(err);
   }
