@@ -74,7 +74,7 @@ export function updateUser(user, token) {
 
       const error = data;
 
-      if (error.status === 422 && error.validationErrors.vanityName) {
+      if (error.name !== 'UniqueConstraintError' && error.validationErrors.vanityName) {
         error.validationErrors.vanityName =
           `should only contain lowercase a-z, 0-9, and hyphens
            (no more than one hyphen consecutively) and must not
