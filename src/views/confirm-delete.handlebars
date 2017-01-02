@@ -1,13 +1,16 @@
+{{#section 'meta'}}
+<meta name="referrer" content="always">
+{{/section}}
 {{#section 'css'}}
 <link rel="stylesheet" href="{{asset '/styles/login.css' 0}}">
 {{/section}}
 
 <h2 class="subheader">Confirm account deletion</h2>
 <div id="delete-txt">
-    <p>Are you sure you want to delete your account and all of your blog posts from CS Blogs?</p>
-    <p>This action cannot be undone!</p>
+  <p>Are you sure you want to delete your account and all of your blog posts from CS Blogs?</p>
+  <p>This action cannot be undone!</p>
 </div>
 <div id="delete-btns">
-    <a id="cancel-button" class="button" href="javascript:history.back()">Cancel</a>
-    <a id="submit-button" class="button" href="/delete-account" referrerpolicy="same-origin">Delete</a>
+  <a id="cancel-button" class="button" href="javascript:history.back()">Cancel</a>
+  <a id="submit-button" class="button" href="/delete-account">Delete</a>
 </div>
