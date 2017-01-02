@@ -96,8 +96,14 @@ function authenticateWithAPI(service, accessToken, profile, done) {
     accessAppKey: process.env.CSBLOGS_STACK_EX_CLIENT_KEY
   })
   .then(res => {
+    if (res.status !== 200) {
+      const error = new Error(res.error);
+      error.status = res.status;
+      return done(error);
+    }
+
     log.info(res, 'User authenticated with API');
-    done(null, normalizeUser(profile, res));
+    return done(null, normalizeUser(profile, res));
   })
   .catch(err => {
     done(err);
