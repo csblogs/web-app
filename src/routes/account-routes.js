@@ -58,13 +58,13 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/profile', ensureAuthenticated, (req, res, next) => {
+router.get('/profile', ensureAuthenticated, async (req, res, next) => {
   if (!req.user.isRegistered) {
     res.redirect('/register');
   }
 
   try {
-    bloggerController.renderProfile(req, res, true);
+    await bloggerController.renderProfile(req, res, true);
   } catch (err) {
     next(err);
   }

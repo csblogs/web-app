@@ -31,11 +31,11 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:vanity_name', (req, res, next) => {
+router.get('/:vanity_name', async (req, res, next) => {
   const loggedIn = req.isAuthenticated() && req.params.vanity_name === req.user.vanityName;
 
   try {
-    bloggerController.renderProfile(req, res, loggedIn);
+    await bloggerController.renderProfile(req, res, loggedIn);
   } catch (err) {
     next(err);
   }
