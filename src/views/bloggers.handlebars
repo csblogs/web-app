@@ -6,17 +6,33 @@
 <meta name="description" content="Computer Science Blogs is the feed aggregation service for the writings of Computer Science students, academics, researchers and those in industry listed here."/>
 <meta property="og:title" content="List of Computer Science Bloggers"/>
 <meta property="og:description" content="Computer Science Blogs is the feed aggregation service for the writings of Computer Science students, academics, researchers and those in industry listed here."/>
+{{#if bloggers}}
+<script type="application/ld+json">
+  [
+    {{#each bloggers}}
+      {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "sameAs": "/bloggers/{{vanityName}}",
+        "image": "{{profilePictureURI}}",
+        "givenName": "{{firstName}}",
+        "familyName": "{{lastName}}"
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+</script>
+{{/if}}
 {{/section}}
 
 <ul class="blogger-list">
   {{#each bloggers}}
-  <li class="blogger-item" itemscope itemprop="author" itemtype="https://schema.org/Person">
-    <a class="avatar" href="/bloggers/{{vanityName}}" itemprop="sameAs">
-      <img class="avatar" src="{{profilePictureURI}}" alt="Avatar" itemprop="image"/>
+  <li class="blogger-item">
+    <a class="avatar" href="/bloggers/{{vanityName}}">
+      <img class="avatar" src="{{profilePictureURI}}" alt="Avatar"/>
     </a>
     <h2>
-      <span itemprop="givenName">{{firstName}}</span>
-      <span itemprop="familyName">{{lastName}}</span>
+      <span>{{firstName}}</span>
+      <span>{{lastName}}</span>
     </h2>
     {{> display-site}}
   </li>
