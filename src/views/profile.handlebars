@@ -13,16 +13,83 @@
 <meta property="profile:first_name" content="{{blogger.firstName}}"/>
 <meta property="profile:last_name" content="{{blogger.lastName}}"/>
 <meta property="profile:username" content="{{blogger.vanityName}}"/>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "sameAs": "/bloggers/{{blogger.vanityName}}",
+  "image": {
+    "@context": "http://schema.org",
+    "@type": "ImageObject",
+    "url": "{{blogger.profilePictureURI}}"
+  },
+  "name": "{{blogger.firstName}} {{blogger.lastName}}",
+  "givenName": "{{blogger.firstName}}",
+  "familyName": "{{blogger.lastName}}"
+}
+</script>
+{{#if posts}}
+<script type="application/ld+json">
+[
+    {{#each posts}}
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{title}}",
+      "author": {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "sameAs": "/bloggers/{{../blogger.vanityName}}",
+        "image": {
+         "@context": "http://schema.org",
+         "@type": "ImageObject",
+         "url": "{{../blogger.profilePictureURI}}"
+        },
+        "name": "{{../blogger.firstName}} {{blogger.lastName}}",
+        "givenName": "{{../blogger.firstName}}",
+        "familyName": "{{../blogger.lastName}}"
+      },
+      "publisher": {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "sameAs": "/bloggers/{{../blogger.vanityName}}",
+        "image": {
+         "@context": "http://schema.org",
+         "@type": "ImageObject",
+         "url": "{{../blogger.profilePictureURI}}"
+        },
+        "name": "{{../blogger.firstName}} {{blogger.lastName}}",
+        "givenName": "{{../blogger.firstName}}",
+        "familyName": "{{../blogger.lastName}}"
+      },
+      "datePublished": "{{datePublished}}",
+      "dateModified": "{{datePublished}}",
+      "image": {
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "url": "{{imageURI}}"
+      },
+      "articleBody": "{{{truncate description 400}}}",
+      "url": "{{link}}",
+      "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "{{link}}"
+      }
+    }
+    {{/each}}
+]
+</script>
+{{/if}}
 {{/section}}
 
-<div itemscope itemtype="https://schema.org/Person">
+<div>
   <div class="profile-header">
     <div class="profile-header-content">
-      <img class="avatar" src="{{blogger.profilePictureURI}}" alt="Avatar" itemprop="image"/>
+      <img class="avatar" src="{{blogger.profilePictureURI}}" alt="Avatar"/>
       <div class="profile-info">
         <h2 id="profile-name">
-          <span itemprop="givenName">{{blogger.firstName}}</span>
-          <span itemprop="familyName">{{blogger.lastName}}</span>
+          <span>{{blogger.firstName}}</span>
+          <span>{{blogger.lastName}}</span>
         </h2>
         {{> display-site blogger}}
       </div>
@@ -43,7 +110,7 @@
     </div>
     {{/unlessVerified}}
     <h3 class="subheader">About</h3>
-    <p class="description" itemprop="description">{{blogger.bio}}</p>
+    <p class="description">{{blogger.bio}}</p>
     <div>
       {{#if blogger.githubUsername}}
       {{> pill baseurl='https://github.com/' id=blogger.githubUsername icon='github' label='GitHub'}}
@@ -62,17 +129,17 @@
     <h3 class="subheader">Blog posts</h3>
     {{#if posts}}
     {{#each posts}}
-    <article itemscope itemtype="http://schema.org/BlogPosting">
-      <h4 itemprop="headline"><a href="{{link}}">{{title}}</a></h4>
-      <p class="article-date" itemprop="datePublished">{{formatDateLong datePublished}}</p>
+    <article>
+      <h4><a href="{{link}}">{{title}}</a></h4>
+      <p class="article-date">{{formatDateLong datePublished}}</p>
       {{#if imageURI}}
       <div class="featured-image">
         <a href="{{link}}">
-          <img itemprop="image" src="{{imageURI}}" alt="Featured Image"/>
+          <img src="{{imageURI}}" alt="Featured Image"/>
         </a>
       </div>
       {{/if}}
-      <p class="article-body" itemprop="articleBody">{{{truncate description 400}}} <a class="read-more" itemprop="url" href="{{link}}">Read more &#8594;</a></p>
+      <p class="article-body">{{{truncate description 400}}} <a class="read-more" href="{{link}}">Read more &#8594;</a></p>
       {{#unless @last}}<hr/>{{/unless}}
     </article>
     {{/each}}
