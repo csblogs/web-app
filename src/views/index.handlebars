@@ -4,34 +4,86 @@
 
 {{#section 'meta'}}
 <meta name="description" content="CS Blogs is the home of student and professional computer science bloggers."/>
+{{#if posts}}
+<script type="application/ld+json">
+[
+    {{#each posts}}
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{title}}",
+      "author": {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "sameAs": "/bloggers/{{author.vanityName}}",
+        "image": {
+         "@context": "http://schema.org",
+         "@type": "ImageObject",
+         "url": "{{author.profilePictureURI}}"
+        },
+        "name": "{{author.firstName}} {{author.lastName}}",
+        "givenName": "{{author.firstName}}",
+        "familyName": "{{author.lastName}}"
+      },
+      "publisher": {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "sameAs": "/bloggers/{{author.vanityName}}",
+        "image": {
+         "@context": "http://schema.org",
+         "@type": "ImageObject",
+         "url": "{{author.profilePictureURI}}"
+        },
+        "name": "{{author.firstName}} {{author.lastName}}",
+        "givenName": "{{author.firstName}}",
+        "familyName": "{{author.lastName}}"
+      },
+      "datePublished": "{{datePublished}}",
+      "dateModified": "{{datePublished}}",
+      "image": {
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "url": "{{imageURI}}"
+      },
+      "articleBody": "{{truncate description 400}}",
+      "url": "{{link}}",
+      "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "{{link}}"
+      }
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+]
+</script>
+{{/if}}
 {{/section}}
 
 <div id="space-saver"></div>
 {{#each posts}}
-  <article itemscope itemtype="http://schema.org/BlogPosting">
+  <article>
     <header>
-      <h2 itemprop="headline"><a href="{{link}}">{{title}}</a></h2>
+      <h2><a href="{{link}}">{{title}}</a></h2>
     </header>
     {{#if imageURI}}
     <div class="featured-image">
       <a href="{{link}}">
-        <img itemprop="image" src="{{imageURI}}" alt="Featured Image"/>
+        <img src="{{imageURI}}" alt="Featured Image"/>
       </a>
     </div>
     {{/if}}
-    <p class="article-body" itemprop="articleBody">{{{truncate description 400}}} <a itemprop="url" class="read-more" href="{{link}}">Read more &#8594;</a></p>
+    <p class="article-body">{{{truncate description 400}}} <a class="read-more" href="{{link}}">Read more &#8594;</a></p>
     <footer>
       <div class="article-info">
-        <div class="article-author" itemscope itemprop="author" itemtype="https://schema.org/Person">
+        <div class="article-author">
           <a class="avatar" href="/bloggers/{{author.vanityName}}">
-            <img class="avatar" itemprop="image" src="{{author.profilePictureURI}}" alt="Avatar"/>
+            <img class="avatar" src="{{author.profilePictureURI}}" alt="Avatar"/>
           </a>
-          <a class="article-author-name" itemprop="sameAs" href="/bloggers/{{author.vanityName}}">
-            <span itemprop="givenName">{{author.firstName}}</span>
-            <span itemprop="familyName">{{author.lastName}}</span>
+          <a class="article-author-name" href="/bloggers/{{author.vanityName}}">
+            <span>{{author.firstName}}</span>
+            <span>{{author.lastName}}</span>
           </a>
         </div>
-        <p class="article-date" itemprop="datePublished">{{formatDateShort datePublished}}</p>
+        <p class="article-date">{{formatDateShort datePublished}}</p>
       </div>
     </footer>
     {{#unless @last}}<hr/>{{/unless}}
