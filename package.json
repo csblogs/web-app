@@ -87,7 +87,7 @@
     "express-session": "1.14.2",
     "helmet": "3.1.0",
     "moment": "2.22.1",
-    "node-sass": "3.13.0",
+    "node-sass": "4.13.1",
     "passport": "0.3.2",
     "passport-github2": "0.1.10",
     "passport-stackexchange": "0.1.2",
